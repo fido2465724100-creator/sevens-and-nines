@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.games.sevens_and_nines</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Девятка / Sevens &amp; Nines</name>
+  <summary>Universal card game: Nines, Sevens, Parliament, and Fan Tan</summary>
+  <summary xml:lang="ru">Универсальная карточная игра: Девятка, Семёрки, Parliament и Фан Тан</summary>
+
+  <description>
+    <p>
+      A cross-platform universal layout card game engine featuring traditional Russian "Nines" (36 cards),
+      international "Sevens / Parliament" (52 cards), and "Fan Tan / Card Dominoes" (with pot and chips penalty system).
+    </p>
+    <p xml:lang="ru">
+      Кроссплатформенная карточная игра с поддержкой классической русской «Девятки» (36 карт),
+      международных «Семёрок / Parliament» (52 карты) и азартного «Fan Tan» (с фишками и банком).
+    </p>
+    <ul>
+      <li>Support for 36 and 52-card decks</li>
+      <li>Smart tactical AI bots with strategic card-holding logic</li>
+      <li>8 beautiful built-in card back styles plus custom local photo upload</li>
+      <li>Procedural Web Audio sound effects (card deals, table snaps, chips, victory)</li>
+      <li>Multiple table cloth felt colors (Emerald, Sapphire, Velvet Burgundy, Slate)</li>
+    </ul>
+  </description>
+
+  <launchable type="desktop-id">sevens-and-nines.desktop</launchable>
+
+  <categories>
+    <category>Game</category>
+    <category>CardGame</category>
+    <category>BoardGame</category>
+  </categories>
+
+  <provides>
+    <binary>sevens-and-nines</binary>
+  </provides>
+
+  <content_rating type="oars-1.1" />
+
+  <releases>
+    <release version="1.0.0" date="2026-09-15">
+      <description>
+        <p>Initial release with full Nines, Sevens, Parliament, Fan Tan rules, 8 card backs, custom image upload, and AI bots.</p>
+      </description>
+    </release>
+  </releases>
+</component>

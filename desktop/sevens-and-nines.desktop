@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Девятка / Sevens & Nines
+GenericName=Card Game
+Comment=Classic card game of Nines, Sevens, Parliament and Fan Tan
+Comment[ru]=Классическая карточная игра: Девятка, Семёрки, Parliament и Fan Tan
+Exec=bash -c "cd $(dirname %k) && ./run-game.sh"
+Icon=sevens-and-nines
+Terminal=false
+Categories=Game;CardGame;BoardGame;
+Keywords=cards;nines;sevens;devyatka;fantan;parliament;карты;девятка;семёрка;
+StartupNotify=true
