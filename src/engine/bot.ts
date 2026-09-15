@@ -4,7 +4,6 @@ import { getValidMoves } from './game';
 export interface BotDecision {
   action: 'play' | 'pass';
   card?: Card;
-  thoughtRu?: string;
 }
 
 export function chooseBotMove(
@@ -17,14 +16,13 @@ export function chooseBotMove(
   const validMoves = getValidMoves(bot, table, rules, firstMoveDone);
 
   if (validMoves.length === 0) {
-    return { action: 'pass', thoughtRu: 'Нет подходящих карт для хода — пропускаю' };
+    return { action: 'pass' };
   }
 
   if (validMoves.length === 1) {
     return {
       action: 'play',
       card: validMoves[0],
-      thoughtRu: `Единственный возможный ход: ${formatCardRu(validMoves[0])}`,
     };
   }
 
@@ -33,7 +31,6 @@ export function chooseBotMove(
     return {
       action: 'play',
       card: validMoves[randomIndex],
-      thoughtRu: `Хожу наугад: ${formatCardRu(validMoves[randomIndex])}`,
     };
   }
 
@@ -89,16 +86,5 @@ export function chooseBotMove(
   return {
     action: 'play',
     card: best.card,
-    thoughtRu: `Стратегический ход: ${formatCardRu(best.card)}`,
   };
-}
-
-function formatCardRu(card: Card): string {
-  const suits: Record<string, string> = {
-    spades: '♠ Пики',
-    hearts: '♥ Черви',
-    diamonds: '♦ Бубны',
-    clubs: '♣ Трефы',
-  };
-  return `${card.rank} ${suits[card.suit] || card.suit}`;
 }

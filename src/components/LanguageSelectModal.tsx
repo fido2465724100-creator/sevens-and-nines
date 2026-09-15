@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { LANGUAGES_100, LanguageData } from '../i18n/languages100';
+import { TranslationDict } from '../i18n/translations';
 import { Check, Globe, X } from 'lucide-react';
 
 interface LanguageSelectModalProps {
@@ -7,6 +8,7 @@ interface LanguageSelectModalProps {
   onClose: () => void;
   currentLanguageCode: string;
   onSelectLanguage: (code: string) => void;
+  t: TranslationDict;
 }
 
 export const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
@@ -14,6 +16,7 @@ export const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
   onClose,
   currentLanguageCode,
   onSelectLanguage,
+  t,
 }) => {
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -83,13 +86,13 @@ export const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
-                <span>Select Language / Выберите язык</span>
+                <span>{t.language}</span>
                 <span className="text-xs font-bold text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-400/30">
-                  100 Languages
+                  100
                 </span>
               </h2>
               <p className="text-xs text-slate-400">
-                Gamepad & Joystick friendly: use Arrow Keys / D-Pad to navigate • Press Enter to select
+                {t.gamepadNavHint}
               </p>
             </div>
           </div>
@@ -172,15 +175,12 @@ export const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-3.5 border-t border-slate-800 bg-slate-950/80 flex items-center justify-between">
-          <span className="text-xs text-slate-400 font-medium hidden sm:inline">
-            Bots, UI and player badges dynamically adapt to the chosen culture.
-          </span>
+        <div className="px-6 py-3.5 border-t border-slate-800 bg-slate-950/80 flex items-center justify-end">
           <button
             onClick={onClose}
             className="px-8 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm shadow-xl transition cursor-pointer"
           >
-            Done / Готово
+            {t.done}
           </button>
         </div>
       </div>

@@ -61,9 +61,11 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose, t }) =>
             <div className="space-y-3">
               <h3 className="text-base font-bold text-amber-400">{t.ninesTab} (36 {t.cardsCount})</h3>
               <p>{t.ninesDesc}</p>
-              <div className="p-3 rounded-lg bg-slate-800/80 border border-slate-700">
-                <span className="font-bold text-white block mb-1">♦ 9</span>
-                <span>{t.yourTurn}</span>
+              <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-between">
+                <span className="font-bold text-amber-400 flex items-center gap-1.5 text-sm">
+                  <span className="text-red-400 text-lg">♦</span> 9 ({t.base})
+                </span>
+                <span className="text-xs text-slate-300 font-mono">6, 7, 8 ← <strong>9</strong> → 10, J, Q, K, A</span>
               </div>
             </div>
           )}
@@ -72,20 +74,23 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose, t }) =>
             <div className="space-y-3">
               <h3 className="text-base font-bold text-amber-400">{t.sevensTab} (52 {t.cardsCount})</h3>
               <p>{t.sevensDesc}</p>
-              <div className="p-3 rounded-lg bg-slate-800/80 border border-slate-700">
-                <span className="font-bold text-white block mb-1">7 ♠ ♥ ♦ ♣</span>
-                <span>2, 3, 4, 5, 6 ← <strong>7</strong> → 8, 9, 10, J, Q, K</span>
+              <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-between">
+                <span className="font-bold text-amber-400 text-sm">7 ♠ ♥ ♦ ♣ ({t.base})</span>
+                <span className="text-xs text-slate-300 font-mono">2, 3, 4, 5, 6 ← <strong>7</strong> → 8, 9, 10, J, Q, K</span>
               </div>
             </div>
           )}
 
           {activeTab === 'fantan' && (
             <div className="space-y-3">
-              <h3 className="text-base font-bold text-amber-400">{t.fantanTab}</h3>
+              <h3 className="text-base font-bold text-amber-400">{t.fantanTab} (52 {t.cardsCount})</h3>
               <p>{t.fantanDesc}</p>
-              <div className="p-3 rounded-lg bg-slate-800/80 border border-slate-700">
-                <span className="font-bold text-white block mb-1">{t.pot}: 🪙</span>
-                <span>{t.potWon}</span>
+              <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-between">
+                <span className="font-bold text-yellow-300 flex items-center gap-1.5 text-sm">
+                  <span>🪙</span>
+                  <span>{t.pot}</span>
+                </span>
+                <span className="text-xs text-slate-300">{t.potWon}</span>
               </div>
             </div>
           )}
@@ -94,23 +99,17 @@ export const RulesModal: React.FC<RulesModalProps> = ({ isOpen, onClose, t }) =>
             <div className="space-y-3">
               <h3 className="text-base font-bold text-amber-400">{t.tacticsTab}</h3>
               <div className="space-y-2.5">
-                <div className="p-3 rounded-lg bg-slate-800/90 border border-slate-700">
-                  <h4 className="font-bold text-amber-300 mb-1">1. Block Opponents</h4>
-                  <p className="text-slate-300">
-                    Holding onto base cards (9 or 7) when you have no other cards of that suit prevents opponents from shedding their cards!
-                  </p>
+                <div className="p-3.5 rounded-xl bg-slate-800/90 border border-slate-700">
+                  <h4 className="font-bold text-amber-300 mb-1">{t.tactics1Title}</h4>
+                  <p className="text-slate-300 leading-relaxed">{t.tactics1Desc}</p>
                 </div>
-                <div className="p-3 rounded-lg bg-slate-800/90 border border-slate-700">
-                  <h4 className="font-bold text-amber-300 mb-1">2. Pave Your Own Path</h4>
-                  <p className="text-slate-300">
-                    If you hold sequences (like 9, 10, J, Q), open that suit immediately so you always have guaranteed moves.
-                  </p>
+                <div className="p-3.5 rounded-xl bg-slate-800/90 border border-slate-700">
+                  <h4 className="font-bold text-amber-300 mb-1">{t.tactics2Title}</h4>
+                  <p className="text-slate-300 leading-relaxed">{t.tactics2Desc}</p>
                 </div>
-                <div className="p-3 rounded-lg bg-slate-800/90 border border-slate-700">
-                  <h4 className="font-bold text-amber-300 mb-1">3. Dump Extreme Cards</h4>
-                  <p className="text-slate-300">
-                    End cards (6s and Aces in 36-card deck, or 2s and Kings in 52-card deck) don’t help anyone else after being played.
-                  </p>
+                <div className="p-3.5 rounded-xl bg-slate-800/90 border border-slate-700">
+                  <h4 className="font-bold text-amber-300 mb-1">{t.tactics3Title}</h4>
+                  <p className="text-slate-300 leading-relaxed">{t.tactics3Desc}</p>
                 </div>
               </div>
             </div>

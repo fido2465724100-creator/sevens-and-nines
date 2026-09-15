@@ -65,7 +65,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     if (!file) return;
 
     if (file.size > 4 * 1024 * 1024) {
-      alert('File is too large (max 4 MB)');
+      alert(t.fileTooLarge);
       return;
     }
 
@@ -102,7 +102,21 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     nines: t.ninesTab,
     sevens: t.sevensTab,
     fantan: t.fantanTab,
-    custom: 'Custom',
+    custom: t.gameMode,
+  };
+
+  const getCardBackName = (id: CardBackStyle): string => {
+    switch (id) {
+      case 'classic-blue': return t.cardBackClassicBlue;
+      case 'classic-red': return t.cardBackClassicRed;
+      case 'soviet-atlas': return t.cardBackSovietAtlas;
+      case 'royal-gold': return t.cardBackRoyalGold;
+      case 'emerald': return t.cardBackEmerald;
+      case 'cyber-neon': return t.cardBackCyberNeon;
+      case 'wood-vintage': return t.cardBackWood;
+      case 'galaxy': return t.cardBackSpace;
+      default: return id;
+    }
   };
 
   return (
@@ -270,7 +284,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   </button>
                   <button
                     onClick={handleRemoveCustomBack}
-                    title="Remove custom photo"
+                    title={t.removePhoto}
                     className="p-1.5 rounded-lg text-rose-400 hover:bg-rose-500/20 transition cursor-pointer"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -283,6 +297,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
               {CARD_BACK_OPTIONS.map((opt) => {
                 const isSelected = cardBackStyle === opt.id;
+                const cardBackName = getCardBackName(opt.id);
 
                 return (
                   <button
@@ -292,7 +307,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                       soundEngine.playCardPlace();
                     }}
                     className={`
-                      p-2 rounded-xl border flex items-center gap-2.5 transition-all text-left cursor-pointer
+                      p-2.5 rounded-xl border flex items-center gap-2.5 transition-all text-left cursor-pointer
                       ${
                         isSelected
                           ? 'border-amber-400 bg-amber-500/15 ring-2 ring-amber-400/40'
@@ -305,10 +320,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     </div>
                     <div className="overflow-hidden">
                       <span className="font-semibold text-white text-xs block truncate">
-                        {opt.nameRu}
-                      </span>
-                      <span className="text-[10px] text-slate-400 line-clamp-1">
-                        {opt.nameEn}
+                        {cardBackName}
                       </span>
                     </div>
                   </button>

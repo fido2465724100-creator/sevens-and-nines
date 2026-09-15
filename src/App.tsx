@@ -217,7 +217,12 @@ export const App: React.FC = () => {
         aiDifficulty
       );
 
-      setBotStatusText(decision.thoughtRu || null);
+      if (decision.action === 'play' && decision.card) {
+        const suitName = t[decision.card.suit as keyof TranslationDict] || decision.card.suit;
+        setBotStatusText(`${t.played} ${decision.card.rank} ${suitName}`);
+      } else {
+        setBotStatusText(`${t.noMoves} — ${t.pass}`);
+      }
 
       setTimeout(() => {
         if (decision.action === 'play' && decision.card) {
@@ -321,6 +326,7 @@ export const App: React.FC = () => {
         }}
         currentLanguageCode={language}
         onSelectLanguage={handleSelectLanguage}
+        t={t}
       />
     </div>
   );
