@@ -10,21 +10,21 @@ export interface LanguageInfo {
 }
 
 export const SUPPORTED_LANGUAGES: LanguageInfo[] = [
-  { code: 'ru', name: 'Russian', nativeName: 'Русский', flag: '🇷🇺' },
   { code: 'uk', name: 'Ukrainian', nativeName: 'Українська', flag: '🇺🇦' },
   { code: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧' },
-  { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪' },
-  { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷' },
+  { code: 'zh', name: 'Chinese', nativeName: '中文', flag: '🇨🇳' },
+  { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳' },
   { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸' },
+  { code: 'ar', name: 'Arabic', nativeName: 'العربية', flag: '🇸🇦' },
+  { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷' },
+  { code: 'pt', name: 'Portuguese', nativeName: 'Português', flag: '🇵🇹' },
+  { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪' },
+  { code: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵' },
+  { code: 'tr', name: 'Turkish', nativeName: 'Türkçe', flag: '🇹🇷' },
   { code: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹' },
   { code: 'pl', name: 'Polish', nativeName: 'Polski', flag: '🇵🇱' },
-  { code: 'pt', name: 'Portuguese', nativeName: 'Português', flag: '🇵🇹' },
-  { code: 'tr', name: 'Turkish', nativeName: 'Türkçe', flag: '🇹🇷' },
-  { code: 'ar', name: 'Arabic', nativeName: 'العربية', flag: '🇸🇦' },
   { code: 'he', name: 'Hebrew', nativeName: 'עברית', flag: '🇮🇱' },
-  { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳' },
-  { code: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵' },
-  { code: 'zh', name: 'Chinese', nativeName: '中文', flag: '🇨🇳' },
+  { code: 'ru', name: 'Russian', nativeName: 'Русский', flag: '🇷🇺' },
 ];
 
 export interface TranslationDict {
@@ -120,6 +120,10 @@ export interface TranslationDict {
   fileTooLarge: string;
   removePhoto: string;
   gamepadNavHint: string;
+  // Initial game mode selection
+  chooseGameTitle?: string;
+  chooseGameSubtitle?: string;
+  playGame?: string;
 }
 
 export const TRANSLATIONS: Record<Language, TranslationDict> = {
@@ -210,6 +214,9 @@ export const TRANSLATIONS: Record<Language, TranslationDict> = {
     fileTooLarge: 'Файл слишком большой (макс 4 МБ)',
     removePhoto: 'Удалить своё фото',
     gamepadNavHint: 'Управление: стрелки / D-Pad • Выбор: Enter • Закрыть: Esc',
+    chooseGameTitle: 'В какую именно игру вы хотите сыграть?',
+    chooseGameSubtitle: 'Выберите правила для начала игры. Режим можно изменить в любой момент в настройках.',
+    playGame: 'Играть',
   },
 
   uk: {
@@ -299,6 +306,9 @@ export const TRANSLATIONS: Record<Language, TranslationDict> = {
     fileTooLarge: 'Файл занадто великий (макс 4 МБ)',
     removePhoto: 'Видалити власне фото',
     gamepadNavHint: 'Керування: стрілки / D-Pad • Вибір: Enter • Закрити: Esc',
+    chooseGameTitle: 'У яку саме гру ви хочете зіграти?',
+    chooseGameSubtitle: 'Оберіть правила для початку гри. Режим завжди можна змінити в будь-який момент у налаштуваннях.',
+    playGame: 'Грати',
   },
 
   en: {
@@ -388,6 +398,9 @@ export const TRANSLATIONS: Record<Language, TranslationDict> = {
     fileTooLarge: 'File is too large (max 4 MB)',
     removePhoto: 'Remove custom photo',
     gamepadNavHint: 'Controls: Arrow keys / D-Pad • Select: Enter • Close: Esc',
+    chooseGameTitle: 'Which game would you like to play?',
+    chooseGameSubtitle: 'Choose rules to start. You can change the game mode anytime in settings.',
+    playGame: 'Play',
   },
 
   de: {
@@ -1519,5 +1532,8 @@ export function getTranslationsForLanguage(code: string): TranslationDict {
     sounds: l100.sounds || fallback.sounds,
     newGame: l100.restart,
     language: l100.name,
+    chooseGameTitle: fallback.chooseGameTitle || l100.rulesGuide || 'Choose Game',
+    chooseGameSubtitle: fallback.chooseGameSubtitle || l100.rulesGuide || 'Which game would you like to play?',
+    playGame: fallback.playGame || l100.restart || 'Play',
   };
 }

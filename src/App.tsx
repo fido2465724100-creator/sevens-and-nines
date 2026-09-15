@@ -19,16 +19,21 @@ import { SettingsModal } from './components/SettingsModal';
 import { RulesModal } from './components/RulesModal';
 import { WinModal } from './components/WinModal';
 import { LanguageSelectModal } from './components/LanguageSelectModal';
+import { InitialGameModeModal } from './components/InitialGameModeModal';
 
 export const App: React.FC = () => {
-  // Language (100 languages supported)
+  // Language (100 languages supported - Ukrainian default)
   const [language, setLanguage] = useState<Language>(() => {
     const saved = localStorage.getItem('nines_lang');
-    return saved && LANGUAGES_MAP[saved] ? saved : 'ru';
+    return saved && LANGUAGES_MAP[saved] ? saved : 'uk';
   });
 
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState<boolean>(() => {
     return localStorage.getItem('nines_lang_chosen') !== 'true';
+  });
+
+  const [isInitialGameModeModalOpen, setIsInitialGameModeModalOpen] = useState<boolean>(() => {
+    return localStorage.getItem('nines_game_mode_chosen') !== 'true';
   });
 
   const t: TranslationDict = useMemo(() => {
@@ -161,6 +166,12 @@ export const App: React.FC = () => {
     setRulePresetId(newPresetId);
     const newRules = RULE_PRESETS[newPresetId] || RULE_PRESETS.nines;
     handleRestart(newRules);
+  };
+
+  const handleSelectInitialGameMode = (newPresetId: RulePresetId) => {
+    handleSelectRules(newPresetId);
+    localStorage.setItem('nines_game_mode_chosen', 'true');
+    setIsInitialGameModeModalOpen(false);
   };
 
   // Turn checks
@@ -326,6 +337,12 @@ export const App: React.FC = () => {
         }}
         currentLanguageCode={language}
         onSelectLanguage={handleSelectLanguage}
+        t={t}
+      />
+
+      <InitialGameModeModal
+        isOpen={!isLanguageModalOpen && isInitialGameModeModalOpen}
+        onSelectGameMode={handleSelectInitialGameMode}
         t={t}
       />
     </div>
