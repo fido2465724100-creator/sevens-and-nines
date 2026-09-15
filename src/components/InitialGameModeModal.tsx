@@ -2,17 +2,19 @@ import React from 'react';
 import { RulePresetId } from '../engine/types';
 import { TranslationDict } from '../i18n/translations';
 import { soundEngine } from '../audio/soundEngine';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { Sparkles, ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface InitialGameModeModalProps {
   isOpen: boolean;
   onSelectGameMode: (presetId: RulePresetId) => void;
+  onBack?: () => void;
   t: TranslationDict;
 }
 
 export const InitialGameModeModal: React.FC<InitialGameModeModalProps> = ({
   isOpen,
   onSelectGameMode,
+  onBack,
   t,
 }) => {
   if (!isOpen) return null;
@@ -67,12 +69,21 @@ export const InitialGameModeModal: React.FC<InitialGameModeModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in">
-      <div className="bg-slate-900/95 border-2 border-amber-500/50 w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden flex flex-col p-6 sm:p-8 space-y-6 text-center">
+      <div className="bg-slate-900/95 border-2 border-amber-500/50 w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden flex flex-col p-6 sm:p-8 space-y-6 text-center relative">
+        {onBack && (
+          <button
+            onClick={onBack}
+            className="absolute top-6 left-6 text-xs text-slate-300 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700/80 transition cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4 text-amber-400" />
+            <span>{t.language}</span>
+          </button>
+        )}
         {/* Header */}
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-wider mb-1">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>{t.rulesGuide}</span>
+            <span>{t.rulesGuide} • 2 / 2</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
             {t.chooseGameTitle || t.gameMode}

@@ -9,6 +9,7 @@ interface LanguageSelectModalProps {
   currentLanguageCode: string;
   onSelectLanguage: (code: string) => void;
   t: TranslationDict;
+  isOnboarding?: boolean;
 }
 
 export const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
@@ -17,6 +18,7 @@ export const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
   currentLanguageCode,
   onSelectLanguage,
   t,
+  isOnboarding,
 }) => {
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -90,6 +92,11 @@ export const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
                 <span className="text-xs font-bold text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-400/30">
                   100
                 </span>
+                {isOnboarding && (
+                  <span className="text-xs font-bold text-sky-400 bg-sky-500/10 px-2.5 py-0.5 rounded-full border border-sky-400/30">
+                    1 / 2
+                  </span>
+                )}
               </h2>
               <p className="text-xs text-slate-400">
                 {t.gamepadNavHint}

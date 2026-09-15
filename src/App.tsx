@@ -28,13 +28,14 @@ export const App: React.FC = () => {
     return saved && LANGUAGES_MAP[saved] ? saved : 'uk';
   });
 
-  const [isLanguageModalOpen, setIsLanguageModalOpen] = useState<boolean>(() => {
-    return localStorage.getItem('nines_lang_chosen') !== 'true';
+  // 2-Step Onboarding sequence on first launch:
+  // Step 1: Language selection (100 languages)
+  // Step 2: Game mode selection (9, 7, Fan Tan)
+  const [onboardingStep, setOnboardingStep] = useState<'language' | 'gamemode' | 'done'>(() => {
+    return localStorage.getItem('nines_onboarding_v2') === 'done' ? 'done' : 'language';
   });
 
-  const [isInitialGameModeModalOpen, setIsInitialGameModeModalOpen] = useState<boolean>(() => {
-    return localStorage.getItem('nines_game_mode_chosen') !== 'true';
-  });
+  const [isManualLanguageModalOpen, setIsManualLanguageModalOpen] = useState<boolean>(false);
 
   const t: TranslationDict = useMemo(() => {
     return getTranslationsForLanguage(language);
@@ -162,6 +163,13 @@ export const App: React.FC = () => {
     soundEngine.playCardDeal();
   };
 
+  const handleCloseLanguageModal = () => {
+    setIsManualLanguageModalOpen(false);
+    if (onboardingStep === 'language') {
+      setOnboardingStep('gamemode');
+    }
+  };
+
   const handleSelectRules = (newPresetId: RulePresetId) => {
     setRulePresetId(newPresetId);
     const newRules = RULE_PRESETS[newPresetId] || RULE_PRESETS.nines;
@@ -170,8 +178,9 @@ export const App: React.FC = () => {
 
   const handleSelectInitialGameMode = (newPresetId: RulePresetId) => {
     handleSelectRules(newPresetId);
+    localStorage.setItem('nines_onboarding_v2', 'done');
     localStorage.setItem('nines_game_mode_chosen', 'true');
-    setIsInitialGameModeModalOpen(false);
+    setOnboardingStep('done');
   };
 
   // Turn checks
@@ -281,7 +290,7 @@ export const App: React.FC = () => {
         autoPass={autoPass}
         onToggleAutoPass={() => setAutoPass((prev) => !prev)}
         language={language}
-        onOpenLanguageModal={() => setIsLanguageModalOpen(true)}
+        onOpenLanguageModal={() => setIsManualLanguageModalOpen(true)}
         onPlayCard={handlePlayCard}
         onPass={handlePass}
         onOpenSettings={() => setIsSettingsOpen(true)}
@@ -309,7 +318,7 @@ export const App: React.FC = () => {
         onChangeVolume={setSoundVolume}
         language={language}
         onSelectLanguage={handleSelectLanguage}
-        onOpenLanguageModal={() => setIsLanguageModalOpen(true)}
+        onOpenLanguageModal={() => setIsManualLanguageModalOpen(true)}
         onRestartGame={() => handleRestart()}
         t={t}
       />
@@ -330,19 +339,18 @@ export const App: React.FC = () => {
       />
 
       <LanguageSelectModal
-        isOpen={isLanguageModalOpen}
-        onClose={() => {
-          setIsLanguageModalOpen(false);
-          localStorage.setItem('nines_lang_chosen', 'true');
-        }}
+        isOpen={onboardingStep === 'language' || isManualLanguageModalOpen}
+        onClose={handleCloseLanguageModal}
         currentLanguageCode={language}
         onSelectLanguage={handleSelectLanguage}
         t={t}
+        isOnboarding={onboardingStep === 'language'}
       />
 
       <InitialGameModeModal
-        isOpen={!isLanguageModalOpen && isInitialGameModeModalOpen}
+        isOpen={onboardingStep === 'gamemode'}
         onSelectGameMode={handleSelectInitialGameMode}
+        onBack={() => setOnboardingStep('language')}
         t={t}
       />
     </div>
