@@ -22,7 +22,7 @@ export const PlayerSeat: React.FC<PlayerSeatProps> = ({
   cardBackStyle,
   customCardBackUrl,
   botStatusText,
-  t = { turn: 'Ход', pass: 'Пас' },
+  t = { turn: 'Turn', pass: 'Pass' },
 }) => {
   const isBottom = position === 'bottom';
 

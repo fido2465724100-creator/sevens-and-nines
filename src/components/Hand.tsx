@@ -58,7 +58,7 @@ export const Hand: React.FC<HandProps> = ({
             ) : (
               <span className="flex items-center gap-1.5 text-rose-300 font-bold">
                 <Ban className="w-4 h-4 text-rose-400" />
-                {autoPass ? 'Нет ходов (срабатывает авто-пас...)' : t.noMoves}
+                {autoPass ? `${t.noMoves} (${t.autoPass})` : t.noMoves}
               </span>
             )
           ) : (
@@ -71,7 +71,7 @@ export const Hand: React.FC<HandProps> = ({
           {/* Auto-pass Toggle Button */}
           <button
             onClick={onToggleAutoPass}
-            title={autoPass ? 'Отключить авто-пас' : 'Включить авто-пас, чтобы не ждать при отсутствии ходов'}
+            title={autoPass ? t.autoPassOff : t.autoPassOn}
             className={`
               flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all shadow cursor-pointer border
               ${

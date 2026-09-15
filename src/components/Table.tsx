@@ -113,7 +113,7 @@ export const Table: React.FC<TableProps> = ({
           <button
             onClick={onOpenLanguageModal}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition border border-white/15 cursor-pointer shadow hover:border-amber-400/60 group"
-            title="100 Languages / Выбор языка (100 языков)"
+            title={`${t.language} (100)`}
           >
             <Globe className="w-3.5 h-3.5 text-amber-300 group-hover:rotate-45 transition-transform" />
             <span className="text-sm leading-none">{currentLang.flag}</span>

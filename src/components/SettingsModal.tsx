@@ -147,7 +147,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 </h3>
               </div>
               <span className="text-xs text-slate-400">
-                Gamepad & D-Pad friendly
+                {t.gamepadNavHint}
               </span>
             </div>
 

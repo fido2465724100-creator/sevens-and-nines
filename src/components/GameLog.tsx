@@ -12,7 +12,7 @@ interface GameLogProps {
 export const GameLog: React.FC<GameLogProps> = ({
   moves,
   className = '',
-  t = { history: 'Журнал ходов', started: 'Партия началась...', played: 'выложил', passed: 'пас' },
+  t = { history: 'Move Log', started: 'Game started...', played: 'played', passed: 'passed' },
 }) => {
   const recentMoves = moves.slice(0, 8);
 
