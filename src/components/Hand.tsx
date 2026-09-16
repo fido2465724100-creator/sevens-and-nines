@@ -116,7 +116,7 @@ export const Hand: React.FC<HandProps> = ({
       </div>
 
       {/* Cards Fan with Half-Card Gap Between Suits */}
-      <div className="flex items-center justify-center flex-wrap sm:flex-nowrap gap-6 sm:gap-9 py-3 px-3 w-full overflow-x-auto min-h-[145px]">
+      <div className="flex items-center justify-center flex-wrap sm:flex-nowrap gap-4 sm:gap-6 md:gap-7 py-2 sm:py-3 px-2 sm:px-3 w-full overflow-x-auto min-h-[135px] sm:min-h-[145px]">
         {groupedHand.map((group) => (
           <div
             key={group.suit}

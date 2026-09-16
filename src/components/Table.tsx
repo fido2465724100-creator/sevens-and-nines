@@ -170,9 +170,9 @@ export const Table: React.FC<TableProps> = ({
         </div>
 
         {/* Middle Row: Left Bot + Center Suit Tracks + Right Bot */}
-        <div className="flex items-center justify-between w-full my-2 gap-2 sm:gap-4">
+        <div className="flex items-center justify-between w-full my-1 sm:my-2 gap-2 sm:gap-4">
           {/* Left Player (Bot 1) */}
-          <div className="w-24 sm:w-32 shrink-0 flex justify-center">
+          <div className="w-20 sm:w-28 shrink-0 flex justify-center">
             {botLeft && (
               <PlayerSeat
                 player={botLeft}
@@ -188,7 +188,7 @@ export const Table: React.FC<TableProps> = ({
           </div>
 
           {/* Center: The 4 Suit Tracks on the table */}
-          <div className="flex-1 max-w-2xl flex flex-col gap-1.5 sm:gap-2">
+          <div className="flex-1 max-w-4xl xl:max-w-5xl flex flex-col gap-1 sm:gap-1.5 w-full min-w-0">
             {SUITS_ORDER.map((suit) => (
               <SuitTrack
                 key={suit}
@@ -201,7 +201,7 @@ export const Table: React.FC<TableProps> = ({
           </div>
 
           {/* Right Player (Bot 3) */}
-          <div className="w-24 sm:w-32 shrink-0 flex justify-center">
+          <div className="w-20 sm:w-28 shrink-0 flex justify-center">
             {botRight && (
               <PlayerSeat
                 player={botRight}
@@ -219,9 +219,9 @@ export const Table: React.FC<TableProps> = ({
 
         {/* Bottom Area: Human Player Hand and Game Log */}
         <div className="w-full flex flex-col items-center relative">
-          <div className="w-full flex items-end justify-between gap-4">
+          <div className="w-full flex items-end justify-between gap-2 sm:gap-4">
             {/* User Avatar Badge */}
-            <div className="w-24 sm:w-32 shrink-0 flex justify-center pb-4">
+            <div className="w-20 sm:w-28 shrink-0 flex justify-center pb-4">
               {user && (
                 <PlayerSeat
                   player={user}
@@ -236,7 +236,7 @@ export const Table: React.FC<TableProps> = ({
             </div>
 
             {/* Hand with cards fanned and suit-separated */}
-            <div className="flex-1 flex justify-center">
+            <div className="flex-1 flex justify-center min-w-0">
               {user && (
                 <Hand
                   hand={user.hand}
@@ -255,7 +255,7 @@ export const Table: React.FC<TableProps> = ({
             </div>
 
             {/* Game Log on Right */}
-            <div className="w-36 sm:w-48 shrink-0 hidden md:block pb-2">
+            <div className="w-32 sm:w-44 shrink-0 hidden md:block pb-2">
               <GameLog
                 moves={moveHistory}
                 t={{

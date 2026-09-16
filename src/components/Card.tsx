@@ -11,7 +11,7 @@ interface CardProps {
   onClick?: () => void;
   cardBackStyle?: CardBackStyle;
   customCardBackUrl?: string | null;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   className?: string;
 }
 
@@ -27,7 +27,8 @@ export const Card: React.FC<CardProps> = ({
   className = '',
 }) => {
   const sizeClasses = {
-    sm: 'w-12 h-18 text-xs',
+    xs: 'w-[32px] sm:w-[36px] md:w-[40px] h-[48px] sm:h-[54px] md:h-[60px] text-[10px] sm:text-xs',
+    sm: 'w-[42px] sm:w-12 h-[63px] sm:h-18 text-xs',
     md: 'w-16 h-24 text-sm',
     lg: 'w-22 h-32 text-base',
   }[size];
@@ -52,7 +53,7 @@ export const Card: React.FC<CardProps> = ({
         ${sizeClasses}
         relative shrink-0 rounded-lg bg-white shadow-md select-none
         border transition-all duration-200 cursor-default
-        flex flex-col justify-between p-1.5 font-bold
+        flex flex-col justify-between p-1 sm:p-1.5 font-bold
         ${isRed ? 'text-red-600 border-red-200' : 'text-slate-900 border-slate-300'}
         ${isValidMove ? 'cursor-pointer ring-2 ring-amber-400 shadow-amber-400/50 -translate-y-2 hover:-translate-y-3 hover:shadow-lg' : ''}
         ${isSelected ? 'ring-2 ring-blue-500 -translate-y-3' : ''}
@@ -66,15 +67,19 @@ export const Card: React.FC<CardProps> = ({
     >
       {/* Top Left Corner */}
       <div className="flex flex-col items-start leading-none pointer-events-none">
-        <span className="font-extrabold tracking-tighter">{card.rank}</span>
-        <span className="text-xs sm:text-sm">{symbol}</span>
+        <span className={`font-extrabold tracking-tighter ${size === 'xs' ? 'text-[10px] sm:text-[11px]' : ''}`}>
+          {card.rank}
+        </span>
+        <span className={size === 'xs' ? 'text-[8px] sm:text-[9px]' : 'text-xs sm:text-sm'}>
+          {symbol}
+        </span>
       </div>
 
       {/* Center Suit Symbol / Art */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <span
           className={`opacity-85 select-none ${
-            size === 'sm' ? 'text-xl' : size === 'md' ? 'text-3xl' : 'text-5xl'
+            size === 'xs' ? 'text-base sm:text-lg' : size === 'sm' ? 'text-xl' : size === 'md' ? 'text-3xl' : 'text-5xl'
           }`}
         >
           {symbol}
@@ -83,8 +88,12 @@ export const Card: React.FC<CardProps> = ({
 
       {/* Bottom Right Corner (inverted) */}
       <div className="flex flex-col items-end leading-none rotate-180 pointer-events-none">
-        <span className="font-extrabold tracking-tighter">{card.rank}</span>
-        <span className="text-xs sm:text-sm">{symbol}</span>
+        <span className={`font-extrabold tracking-tighter ${size === 'xs' ? 'text-[10px] sm:text-[11px]' : ''}`}>
+          {card.rank}
+        </span>
+        <span className={size === 'xs' ? 'text-[8px] sm:text-[9px]' : 'text-xs sm:text-sm'}>
+          {symbol}
+        </span>
       </div>
 
       {/* Valid Move Indicator Badge */}
