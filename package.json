@@ -1,7 +1,7 @@
 {
   "name": "sevens-and-nines",
   "productName": "Sevens and Nines",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Classic card game: Sevens, Nines, Parliament and Fan Tan",
   "author": "Anton Mykhailov",
   "main": "electron/main.cjs",
@@ -34,14 +34,20 @@
         "AppImage",
         "snap"
       ],
-      "category": "Game",
-      "icon": "desktop/icon.svg"
+      "category": "Game;CardGame;BoardGame;",
+      "icon": "build/icon.png",
+      "desktop": {
+        "entry": {
+          "Categories": "Game;CardGame;BoardGame;",
+          "Keywords": "cards;cardgame;nines;sevens;devyatka;fantan;parliament;solitaire;patience;карты;карточная;девятка;семёрка;пасьянс;сімка;"
+        }
+      }
     },
     "snap": {
       "grade": "stable",
       "confinement": "strict",
       "summary": "Classic card game: Sevens, Nines, Parliament and Fan Tan",
-      "category": "Game"
+      "category": "Game;CardGame;BoardGame;"
     }
   },
   "dependencies": {

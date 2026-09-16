@@ -1,32 +1,52 @@
-# React + TypeScript + Vite
+# Sevens and Nines (Семёрки и Девятка) 🃏✨
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Classic traditional card game engine featuring:
+- **Nines (Девятка / Дев'ятка)** — 36-card Russian/Ukrainian classic
+- **Sevens / Parliament / Fan Tan / Siebener raus** — 52-card international classic
+- **100 Languages supported** with complete native localization
+- **Play Offline** anywhere on any device
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📱 Play on iPhone / iPad / Android (No App Store needed)
 
-## React Compiler
+1. Open the game link in **Safari** on iOS (or Chrome on Android):
+   👉 **[https://fido2465724100-creator.github.io/sevens-and-nines/](https://fido2465724100-creator.github.io/sevens-and-nines/)**
+2. In Safari, tap the **Share** button (square with arrow up).
+3. Tap **"Add to Home Screen"** (На экран "Домой").
+4. The game icon appears on your home screen! Tap to launch **full-screen with sound, animations, and full offline support**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## 🐧 Install on Linux (Ubuntu / Debian / Arch / Fedora)
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+Available in the official Canonical Snap Store:
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+sudo snap install sevens-and-nines
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+- Supported architectures: **`x86_64` (Intel/AMD)** & **`arm64` (Apple Silicon, Raspberry Pi, ARM servers)**
+- Store link: [https://snapcraft.io/sevens-and-nines](https://snapcraft.io/sevens-and-nines)
+
+---
+
+## 💻 Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run dev server
+npm run dev
+
+# Build web bundle (dist/)
+npm run build
+
+# Run Electron desktop app
+npm run start
+
+# Package for Linux (.snap, .AppImage)
+npm run dist:snap
+npm run dist:appimage
+```
