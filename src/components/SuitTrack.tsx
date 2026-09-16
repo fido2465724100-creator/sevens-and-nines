@@ -39,22 +39,22 @@ export const SuitTrack: React.FC<SuitTrackProps> = ({ suit, sequence, rules, t }
   const maxHighCount = baseIndex >= 0 ? rules.ranks.length - 1 - baseIndex : (is52Deck ? 7 : 5);
 
   return (
-    <div className="flex items-center gap-1.5 sm:gap-2.5 py-1 sm:py-1.5 px-2 sm:px-3 rounded-xl bg-black/30 backdrop-blur-xs border border-white/10 shadow-inner w-full min-w-0">
+    <div className="flex items-center gap-2 sm:gap-3 py-1.5 sm:py-2 px-2.5 sm:px-3.5 rounded-2xl bg-black/35 backdrop-blur-xs border border-white/10 shadow-inner w-full min-w-0">
       {/* Suit Header Badge */}
       <div
-        className={`flex flex-col items-center justify-center w-10 sm:w-12 shrink-0 select-none font-bold ${
+        className={`flex flex-col items-center justify-center w-10 sm:w-12 md:w-14 shrink-0 select-none font-bold ${
           isRed ? 'text-red-400' : 'text-slate-200'
         }`}
       >
-        <span className="text-xl sm:text-2xl leading-none drop-shadow">{symbol}</span>
-        <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-white/70">{suitName}</span>
+        <span className="text-xl sm:text-2xl md:text-3xl leading-none drop-shadow">{symbol}</span>
+        <span className="text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider text-white/70">{suitName}</span>
       </div>
 
       {/* Cards Row Container: Left low cards, Center Base slot, Right high cards */}
       <div className="flex items-center justify-center flex-1 w-full min-w-0">
         {/* Descending cards (Left side) */}
         <div
-          className="flex items-center gap-0.5 sm:gap-1 justify-end min-w-0"
+          className="flex items-center gap-0.5 sm:gap-1 md:gap-1.5 justify-end min-w-0"
           style={{ flex: maxLowCount }}
         >
           {displayLowCards.map((card) => (
@@ -67,7 +67,7 @@ export const SuitTrack: React.FC<SuitTrackProps> = ({ suit, sequence, rules, t }
           {sequence.baseCard ? (
             <div className="relative">
               <Card card={sequence.baseCard} size={cardSize} className="ring-2 ring-amber-400/80 shadow-lg" />
-              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 px-1 rounded bg-amber-500 text-[8px] font-black text-slate-900 uppercase tracking-wider shadow">
+              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 px-1 rounded bg-amber-500 text-[8px] sm:text-[9px] font-black text-slate-900 uppercase tracking-wider shadow">
                 {t.base}
               </div>
             </div>
@@ -75,7 +75,11 @@ export const SuitTrack: React.FC<SuitTrackProps> = ({ suit, sequence, rules, t }
             <div
               className={`
                 rounded-lg border-2 border-dashed flex flex-col items-center justify-center select-none font-semibold transition-all
-                ${is52Deck ? 'w-[32px] sm:w-[36px] md:w-[40px] h-[48px] sm:h-[54px] md:h-[60px]' : 'w-[42px] sm:w-12 h-[63px] sm:h-18'}
+                ${
+                  is52Deck
+                    ? 'w-[36px] sm:w-[44px] md:w-[50px] lg:w-[56px] xl:w-[60px] h-[52px] sm:h-[64px] md:h-[72px] lg:h-[80px] xl:h-[86px]'
+                    : 'w-[44px] sm:w-[52px] md:w-[60px] lg:w-[66px] xl:w-[72px] h-[64px] sm:h-[75px] md:h-[86px] lg:h-[95px] xl:h-[104px]'
+                }
                 ${
                   isRed
                     ? 'border-red-400/40 text-red-300/60 bg-red-950/20'
@@ -83,15 +87,15 @@ export const SuitTrack: React.FC<SuitTrackProps> = ({ suit, sequence, rules, t }
                 }
               `}
             >
-              <span className="text-xs sm:text-sm font-bold">{rules.baseRank}</span>
-              <span className="text-xs sm:text-sm">{symbol}</span>
+              <span className="text-xs sm:text-sm md:text-base font-bold">{rules.baseRank}</span>
+              <span className="text-xs sm:text-sm md:text-base">{symbol}</span>
             </div>
           )}
         </div>
 
         {/* Ascending cards (Right side) */}
         <div
-          className="flex items-center gap-0.5 sm:gap-1 justify-start min-w-0"
+          className="flex items-center gap-0.5 sm:gap-1 md:gap-1.5 justify-start min-w-0"
           style={{ flex: maxHighCount }}
         >
           {displayHighCards.map((card) => (

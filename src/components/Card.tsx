@@ -27,8 +27,8 @@ export const Card: React.FC<CardProps> = ({
   className = '',
 }) => {
   const sizeClasses = {
-    xs: 'w-[32px] sm:w-[36px] md:w-[40px] h-[48px] sm:h-[54px] md:h-[60px] text-[10px] sm:text-xs',
-    sm: 'w-[42px] sm:w-12 h-[63px] sm:h-18 text-xs',
+    xs: 'w-[36px] sm:w-[44px] md:w-[50px] lg:w-[56px] xl:w-[60px] h-[52px] sm:h-[64px] md:h-[72px] lg:h-[80px] xl:h-[86px] text-xs sm:text-sm',
+    sm: 'w-[44px] sm:w-[52px] md:w-[60px] lg:w-[66px] xl:w-[72px] h-[64px] sm:h-[75px] md:h-[86px] lg:h-[95px] xl:h-[104px] text-xs sm:text-sm md:text-base',
     md: 'w-16 h-24 text-sm',
     lg: 'w-22 h-32 text-base',
   }[size];
@@ -67,10 +67,10 @@ export const Card: React.FC<CardProps> = ({
     >
       {/* Top Left Corner */}
       <div className="flex flex-col items-start leading-none pointer-events-none">
-        <span className={`font-extrabold tracking-tighter ${size === 'xs' ? 'text-[10px] sm:text-[11px]' : ''}`}>
+        <span className="font-extrabold tracking-tighter text-xs sm:text-sm md:text-base">
           {card.rank}
         </span>
-        <span className={size === 'xs' ? 'text-[8px] sm:text-[9px]' : 'text-xs sm:text-sm'}>
+        <span className="text-[9px] sm:text-[11px] md:text-xs">
           {symbol}
         </span>
       </div>
@@ -79,7 +79,13 @@ export const Card: React.FC<CardProps> = ({
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <span
           className={`opacity-85 select-none ${
-            size === 'xs' ? 'text-base sm:text-lg' : size === 'sm' ? 'text-xl' : size === 'md' ? 'text-3xl' : 'text-5xl'
+            size === 'xs'
+              ? 'text-lg sm:text-xl md:text-2xl lg:text-3xl'
+              : size === 'sm'
+              ? 'text-xl sm:text-2xl md:text-3xl'
+              : size === 'md'
+              ? 'text-3xl'
+              : 'text-5xl'
           }`}
         >
           {symbol}
@@ -88,10 +94,10 @@ export const Card: React.FC<CardProps> = ({
 
       {/* Bottom Right Corner (inverted) */}
       <div className="flex flex-col items-end leading-none rotate-180 pointer-events-none">
-        <span className={`font-extrabold tracking-tighter ${size === 'xs' ? 'text-[10px] sm:text-[11px]' : ''}`}>
+        <span className="font-extrabold tracking-tighter text-xs sm:text-sm md:text-base">
           {card.rank}
         </span>
-        <span className={size === 'xs' ? 'text-[8px] sm:text-[9px]' : 'text-xs sm:text-sm'}>
+        <span className="text-[9px] sm:text-[11px] md:text-xs">
           {symbol}
         </span>
       </div>

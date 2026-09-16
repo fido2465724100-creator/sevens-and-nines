@@ -188,7 +188,7 @@ export const Table: React.FC<TableProps> = ({
           </div>
 
           {/* Center: The 4 Suit Tracks on the table */}
-          <div className="flex-1 max-w-4xl xl:max-w-5xl flex flex-col gap-1 sm:gap-1.5 w-full min-w-0">
+          <div className="flex-1 max-w-4xl xl:max-w-5xl flex flex-col items-center gap-1.5 sm:gap-2 w-full min-w-0">
             {SUITS_ORDER.map((suit) => (
               <SuitTrack
                 key={suit}
