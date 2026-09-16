@@ -1,7 +1,9 @@
 {
   "name": "sevens-and-nines",
-  "productName": "Девятка / Sevens & Nines",
+  "productName": "Sevens and Nines",
   "version": "1.0.0",
+  "description": "Classic card game: Sevens, Nines, Parliament and Fan Tan",
+  "author": "Anton Mykhailov",
   "main": "electron/main.cjs",
   "type": "module",
   "scripts": {
@@ -12,11 +14,12 @@
     "start": "electron .",
     "pack": "electron-builder --dir",
     "dist:appimage": "npm run build && electron-builder --linux AppImage",
-    "dist:deb": "npm run build && electron-builder --linux deb"
+    "dist:deb": "npm run build && electron-builder --linux deb",
+    "dist:snap": "npm run build && electron-builder --linux snap"
   },
   "build": {
-    "appId": "org.games.sevens_and_nines",
-    "productName": "SevensAndNines",
+    "appId": "io.snapcraft.sevens-and-nines",
+    "productName": "Sevens and Nines",
     "executableName": "sevens-and-nines",
     "directories": {
       "output": "release"
@@ -28,10 +31,17 @@
     ],
     "linux": {
       "target": [
-        "AppImage"
+        "AppImage",
+        "snap"
       ],
       "category": "Game",
       "icon": "desktop/icon.svg"
+    },
+    "snap": {
+      "grade": "stable",
+      "confinement": "strict",
+      "summary": "Classic card game: Sevens, Nines, Parliament and Fan Tan",
+      "category": "Game"
     }
   },
   "dependencies": {

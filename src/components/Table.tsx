@@ -87,8 +87,8 @@ export const Table: React.FC<TableProps> = ({
       {/* Top Navigation Bar */}
       <header className="relative z-30 flex items-center justify-between px-3 sm:px-8 py-2.5 bg-black/35 backdrop-blur-md border-b border-white/10">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center font-black text-slate-950 shadow-lg text-lg">
-            9
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center font-black text-slate-950 shadow-lg select-none px-1">
+            <span className="text-xs font-black tracking-tighter flex items-center">7<span className="text-red-700 text-[10px] mx-0.5">♦</span>9</span>
           </div>
           <div>
             <h1 className="text-sm sm:text-base font-black text-white leading-tight flex items-center gap-2">

@@ -10,7 +10,7 @@ function createWindow() {
     height: 850,
     minWidth: 900,
     minHeight: 650,
-    title: 'Девятка / Sevens & Nines',
+    title: 'Sevens and Nines',
     autoHideMenuBar: true,
     show: false, // Show gracefully when ready
     backgroundColor: '#022c22',
