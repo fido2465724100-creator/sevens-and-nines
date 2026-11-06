@@ -15,13 +15,13 @@
     <!-- PWA Manifest & Theme Color -->
     <link rel="manifest" href="./manifest.json" />
     <meta name="theme-color" content="#064e3b" />
-    <script type="module" crossorigin src="./assets/index-J-wTQH2F.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Cl9wLJMV.css">
+    <script type="module" crossorigin src="./assets/index-DsFiHG6-.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CS8MSRkF.css">
   </head>
   <body class="overflow-hidden select-none">
     <div id="root"></div>
     <script>
-      if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+      if ('serviceWorker' in navigator && window.location.protocol.startsWith('http') && window.location.hostname !== 'localhost') {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('./sw.js').catch(() => {});
         });
