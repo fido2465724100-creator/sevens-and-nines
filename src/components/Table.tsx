@@ -7,7 +7,7 @@ import { SuitTrack } from './SuitTrack';
 import { PlayerSeat } from './PlayerSeat';
 import { Hand } from './Hand';
 import { GameLog } from './GameLog';
-import { BookOpen, Coins, Globe, RotateCcw, Settings } from 'lucide-react';
+import { BookOpen, Coins, Globe, RotateCcw, Settings, Smartphone } from 'lucide-react';
 
 interface TableProps {
   gameState: GameState;
@@ -76,18 +76,18 @@ export const Table: React.FC<TableProps> = ({
 
   return (
     <div
-      className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden select-none"
+      className="relative w-full h-[100dvh] max-h-[100dvh] flex flex-col justify-between overflow-hidden select-none safe-area-padding mobile-table-compact"
       style={{
         background: feltGradients[tableColor],
       }}
     >
       {/* Wooden Table Border / Vignette overlay */}
-      <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_100px_rgba(0,0,0,0.85)] border-[12px] border-amber-950/60" />
+      <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_100px_rgba(0,0,0,0.85)] border-[8px] sm:border-[12px] border-amber-950/60" />
 
       {/* Top Navigation Bar */}
-      <header className="relative z-30 flex items-center justify-between px-3 sm:px-8 py-2.5 bg-black/35 backdrop-blur-md border-b border-white/10">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center font-black text-slate-950 shadow-lg select-none px-1">
+      <header className="relative z-30 flex items-center justify-between px-2 sm:px-8 py-1 sm:py-2.5 bg-black/35 backdrop-blur-md border-b border-white/10 mobile-header-compact">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center font-black text-slate-950 shadow-lg select-none px-1">
             <span className="text-xs font-black tracking-tighter flex items-center">7<span className="text-red-700 text-[10px] mx-0.5">♦</span>9</span>
           </div>
           <div>
@@ -152,9 +152,9 @@ export const Table: React.FC<TableProps> = ({
       </header>
 
       {/* Main Game Arena */}
-      <main className="relative z-10 flex-1 flex flex-col justify-between items-center p-2 sm:p-4 max-w-7xl mx-auto w-full">
+      <main className="relative z-10 flex-1 flex flex-col justify-start sm:justify-between gap-1 sm:gap-2 items-center p-0.5 sm:p-4 max-w-7xl mx-auto w-full mobile-main-compact">
         {/* Top Player (Bot 2) */}
-        <div className="flex justify-center w-full">
+        <div className="flex justify-center w-full shrink-0">
           {botTop && (
             <PlayerSeat
               player={botTop}
@@ -170,9 +170,9 @@ export const Table: React.FC<TableProps> = ({
         </div>
 
         {/* Middle Row: Left Bot + Center Suit Tracks + Right Bot */}
-        <div className="flex items-center justify-between w-full my-1 sm:my-2 gap-2 sm:gap-4">
+        <div className="flex items-center justify-between w-full my-0 sm:my-2 gap-1 sm:gap-4">
           {/* Left Player (Bot 1) */}
-          <div className="w-20 sm:w-28 shrink-0 flex justify-center">
+          <div className="w-14 sm:w-28 shrink-0 flex justify-center">
             {botLeft && (
               <PlayerSeat
                 player={botLeft}
@@ -188,7 +188,7 @@ export const Table: React.FC<TableProps> = ({
           </div>
 
           {/* Center: The 4 Suit Tracks on the table */}
-          <div className="flex-1 max-w-4xl xl:max-w-5xl flex flex-col items-center gap-1.5 sm:gap-2 w-full min-w-0">
+          <div className="flex-1 max-w-4xl xl:max-w-5xl flex flex-col items-center gap-0.5 sm:gap-2 w-full min-w-0">
             {SUITS_ORDER.map((suit) => (
               <SuitTrack
                 key={suit}
@@ -201,7 +201,7 @@ export const Table: React.FC<TableProps> = ({
           </div>
 
           {/* Right Player (Bot 3) */}
-          <div className="w-20 sm:w-28 shrink-0 flex justify-center">
+          <div className="w-14 sm:w-28 shrink-0 flex justify-center">
             {botRight && (
               <PlayerSeat
                 player={botRight}
@@ -218,10 +218,10 @@ export const Table: React.FC<TableProps> = ({
         </div>
 
         {/* Bottom Area: Human Player Hand and Game Log */}
-        <div className="w-full flex flex-col items-center relative">
-          <div className="w-full flex items-end justify-between gap-2 sm:gap-4">
+        <div className="w-full flex flex-col items-center relative shrink-0">
+          <div className="w-full flex items-center sm:items-end justify-between gap-1 sm:gap-4">
             {/* User Avatar Badge */}
-            <div className="w-20 sm:w-28 shrink-0 flex justify-center pb-4">
+            <div className="w-14 sm:w-28 shrink-0 flex justify-center pb-0 sm:pb-4">
               {user && (
                 <PlayerSeat
                   player={user}
@@ -269,6 +269,23 @@ export const Table: React.FC<TableProps> = ({
           </div>
         </div>
       </main>
+
+      {/* Mobile Portrait Orientation Prompt */}
+      <div className="hidden [@media(orientation:portrait)_and_(max-width:768px)]:flex fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-lg flex-col items-center justify-center p-6 text-center text-white select-none">
+        <div className="w-16 h-16 rounded-2xl bg-amber-500/20 border border-amber-400/50 flex items-center justify-center mb-4 animate-pulse">
+          <Smartphone className="w-9 h-9 text-amber-400 rotate-90" />
+        </div>
+        <h2 className="text-xl font-bold mb-2 text-amber-300">
+          {language === 'ru' || language === 'uk' || language === 'be'
+            ? 'Поверните телефон'
+            : 'Please rotate your device'}
+        </h2>
+        <p className="text-sm text-slate-300 max-w-xs">
+          {language === 'ru' || language === 'uk' || language === 'be'
+            ? 'Игра «Девятка и Семёрка» создана для горизонтального (альбомного) режима.'
+            : 'Sevens & Nines is best played in landscape mode.'}
+        </p>
+      </div>
     </div>
   );
 };

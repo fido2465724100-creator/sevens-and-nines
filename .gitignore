@@ -24,3 +24,10 @@ dist-ssr
 *.sw?
 release
 scratch
+
+# Android build artifacts
+android/.gradle/
+android/app/build/
+android/build/
+android/.cxx/
+android/local.properties

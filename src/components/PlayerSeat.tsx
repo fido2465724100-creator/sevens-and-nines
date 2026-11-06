@@ -28,15 +28,15 @@ export const PlayerSeat: React.FC<PlayerSeatProps> = ({
 
   return (
     <div
-      className={`flex flex-col items-center gap-1.5 transition-all duration-300 relative ${
+      className={`flex items-center gap-1 transition-all duration-300 relative ${
         isCurrentTurn ? 'scale-105' : 'opacity-90'
-      }`}
+      } ${position === 'top' ? 'flex-col mobile-top-seat-horizontal' : 'flex-col'}`}
     >
       {/* Turn active glow ring */}
       <div className="relative">
         <div
           className={`
-            w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all shadow-md
+            w-14 h-14 mobile-avatar-compact rounded-full flex items-center justify-center border-2 transition-all shadow-md
             ${
               isWinner
                 ? 'border-amber-400 bg-amber-500/20 ring-4 ring-amber-400/50'
@@ -47,15 +47,15 @@ export const PlayerSeat: React.FC<PlayerSeatProps> = ({
           `}
         >
           {player.isBot ? (
-            <Bot className={`w-7 h-7 ${isCurrentTurn ? 'text-amber-300' : 'text-slate-300'}`} />
+            <Bot className={`w-7 h-7 mobile-avatar-icon ${isCurrentTurn ? 'text-amber-300' : 'text-slate-300'}`} />
           ) : (
-            <User className={`w-7 h-7 ${isCurrentTurn ? 'text-amber-300' : 'text-slate-300'}`} />
+            <User className={`w-7 h-7 mobile-avatar-icon ${isCurrentTurn ? 'text-amber-300' : 'text-slate-300'}`} />
           )}
         </div>
 
         {/* Turn indicator pin */}
         {isCurrentTurn && (
-          <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-amber-400 text-slate-900 text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-tighter shadow">
+          <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-amber-400 text-slate-900 text-[8px] sm:text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-tighter shadow">
             {t.turn}
           </span>
         )}
@@ -70,20 +70,20 @@ export const PlayerSeat: React.FC<PlayerSeatProps> = ({
 
       {/* Name and Badges */}
       <div className="flex flex-col items-center">
-        <span className="text-xs font-bold text-white drop-shadow truncate max-w-[100px]">
+        <span className="text-[10px] sm:text-xs font-bold text-white drop-shadow truncate max-w-[85px] sm:max-w-[100px]">
           {player.name}
         </span>
 
-        <div className="flex items-center gap-2 mt-0.5 text-[11px] font-semibold text-white/85">
+        <div className="flex items-center gap-1.5 sm:gap-2 mt-0.5 text-[9px] sm:text-[11px] font-semibold text-white/85">
           {/* Card count */}
-          <div className="flex items-center gap-0.5 bg-black/40 px-1.5 py-0.5 rounded-full border border-white/10">
-            <Layers className="w-3 h-3 text-amber-300" />
+          <div className="flex items-center gap-0.5 bg-black/40 px-1 sm:px-1.5 py-0.5 rounded-full border border-white/10">
+            <Layers className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-300" />
             <span>{player.hand.length}</span>
           </div>
 
           {/* Chips count */}
-          <div className="flex items-center gap-0.5 bg-black/40 px-1.5 py-0.5 rounded-full border border-white/10">
-            <Coins className="w-3 h-3 text-yellow-400" />
+          <div className="flex items-center gap-0.5 bg-black/40 px-1 sm:px-1.5 py-0.5 rounded-full border border-white/10">
+            <Coins className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-yellow-400" />
             <span>{player.chips}</span>
           </div>
         </div>
@@ -91,7 +91,7 @@ export const PlayerSeat: React.FC<PlayerSeatProps> = ({
 
       {/* Bot Hand (Face-down cards mini fan) */}
       {player.isBot && !isBottom && (
-        <div className="flex items-center justify-center -space-x-4 mt-0.5 overflow-visible">
+        <div className="flex items-center justify-center -space-x-4 mt-0.5 overflow-visible mobile-hide-card-fan">
           {Array.from({ length: Math.min(player.hand.length, 7) }).map((_, i) => (
             <div
               key={i}

@@ -27,9 +27,9 @@ export const Card: React.FC<CardProps> = ({
   className = '',
 }) => {
   const sizeClasses = {
-    xs: 'w-[36px] sm:w-[44px] md:w-[50px] lg:w-[56px] xl:w-[60px] h-[52px] sm:h-[64px] md:h-[72px] lg:h-[80px] xl:h-[86px] text-xs sm:text-sm',
-    sm: 'w-[44px] sm:w-[52px] md:w-[60px] lg:w-[66px] xl:w-[72px] h-[64px] sm:h-[75px] md:h-[86px] lg:h-[95px] xl:h-[104px] text-xs sm:text-sm md:text-base',
-    md: 'w-16 h-24 text-sm',
+    xs: 'card-size-xs w-[36px] sm:w-[44px] md:w-[50px] lg:w-[56px] xl:w-[60px] h-[52px] sm:h-[64px] md:h-[72px] lg:h-[80px] xl:h-[86px] text-xs sm:text-sm',
+    sm: 'card-size-sm w-[44px] sm:w-[52px] md:w-[60px] lg:w-[66px] xl:w-[72px] h-[64px] sm:h-[75px] md:h-[86px] lg:h-[95px] xl:h-[104px] text-xs sm:text-sm md:text-base',
+    md: 'card-size-md w-16 h-24 text-sm',
     lg: 'w-22 h-32 text-base',
   }[size];
 
@@ -51,11 +51,11 @@ export const Card: React.FC<CardProps> = ({
       onClick={isValidMove ? onClick : undefined}
       className={`
         ${sizeClasses}
-        relative shrink-0 rounded-lg bg-white shadow-md select-none
+        relative shrink-0 rounded-lg bg-white shadow-md select-none touch-manipulation
         border transition-all duration-200 cursor-default
         flex flex-col justify-between p-1 sm:p-1.5 font-bold
         ${isRed ? 'text-red-600 border-red-200' : 'text-slate-900 border-slate-300'}
-        ${isValidMove ? 'cursor-pointer ring-2 ring-amber-400 shadow-amber-400/50 -translate-y-2 hover:-translate-y-3 hover:shadow-lg' : ''}
+        ${isValidMove ? 'cursor-pointer ring-2 ring-amber-400 shadow-amber-400/50 -translate-y-2 hover:-translate-y-3 hover:shadow-lg active:scale-95' : ''}
         ${isSelected ? 'ring-2 ring-blue-500 -translate-y-3' : ''}
         ${className}
       `}

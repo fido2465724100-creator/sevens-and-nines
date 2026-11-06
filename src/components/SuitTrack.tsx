@@ -39,15 +39,15 @@ export const SuitTrack: React.FC<SuitTrackProps> = ({ suit, sequence, rules, t }
   const maxHighCount = baseIndex >= 0 ? rules.ranks.length - 1 - baseIndex : (is52Deck ? 7 : 5);
 
   return (
-    <div className="flex items-center gap-2 sm:gap-3 py-1.5 sm:py-2 px-2.5 sm:px-3.5 rounded-2xl bg-black/35 backdrop-blur-xs border border-white/10 shadow-inner w-full min-w-0">
+    <div className="mobile-track-compact flex items-center gap-1.5 sm:gap-3 py-1 sm:py-2 px-2 sm:px-3.5 rounded-xl sm:rounded-2xl bg-black/35 backdrop-blur-xs border border-white/10 shadow-inner w-full min-w-0">
       {/* Suit Header Badge */}
       <div
-        className={`flex flex-col items-center justify-center w-10 sm:w-12 md:w-14 shrink-0 select-none font-bold ${
+        className={`mobile-track-suit flex flex-col items-center justify-center w-8 sm:w-12 md:w-14 shrink-0 select-none font-bold ${
           isRed ? 'text-red-400' : 'text-slate-200'
         }`}
       >
-        <span className="text-xl sm:text-2xl md:text-3xl leading-none drop-shadow">{symbol}</span>
-        <span className="text-[9px] sm:text-[10px] md:text-xs uppercase tracking-wider text-white/70">{suitName}</span>
+        <span className="text-lg sm:text-2xl md:text-3xl leading-none drop-shadow">{symbol}</span>
+        <span className="text-[8px] sm:text-[10px] md:text-xs uppercase tracking-wider text-white/70">{suitName}</span>
       </div>
 
       {/* Cards Row Container: Left low cards, Center Base slot, Right high cards */}
@@ -63,11 +63,11 @@ export const SuitTrack: React.FC<SuitTrackProps> = ({ suit, sequence, rules, t }
         </div>
 
         {/* Center: Base Card Slot (9 or 7) */}
-        <div className="relative mx-1 sm:mx-1.5 shrink-0">
+        <div className="relative mx-0.5 sm:mx-1.5 shrink-0">
           {sequence.baseCard ? (
             <div className="relative">
               <Card card={sequence.baseCard} size={cardSize} className="ring-2 ring-amber-400/80 shadow-lg" />
-              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 px-1 rounded bg-amber-500 text-[8px] sm:text-[9px] font-black text-slate-900 uppercase tracking-wider shadow">
+              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 px-1 rounded bg-amber-500 text-[7px] sm:text-[9px] font-black text-slate-900 uppercase tracking-wider shadow">
                 {t.base}
               </div>
             </div>
@@ -77,8 +77,8 @@ export const SuitTrack: React.FC<SuitTrackProps> = ({ suit, sequence, rules, t }
                 rounded-lg border-2 border-dashed flex flex-col items-center justify-center select-none font-semibold transition-all
                 ${
                   is52Deck
-                    ? 'w-[36px] sm:w-[44px] md:w-[50px] lg:w-[56px] xl:w-[60px] h-[52px] sm:h-[64px] md:h-[72px] lg:h-[80px] xl:h-[86px]'
-                    : 'w-[44px] sm:w-[52px] md:w-[60px] lg:w-[66px] xl:w-[72px] h-[64px] sm:h-[75px] md:h-[86px] lg:h-[95px] xl:h-[104px]'
+                    ? 'card-size-xs w-[36px] sm:w-[44px] md:w-[50px] lg:w-[56px] xl:w-[60px] h-[52px] sm:h-[64px] md:h-[72px] lg:h-[80px] xl:h-[86px]'
+                    : 'card-size-sm w-[44px] sm:w-[52px] md:w-[60px] lg:w-[66px] xl:w-[72px] h-[64px] sm:h-[75px] md:h-[86px] lg:h-[95px] xl:h-[104px]'
                 }
                 ${
                   isRed
@@ -87,8 +87,8 @@ export const SuitTrack: React.FC<SuitTrackProps> = ({ suit, sequence, rules, t }
                 }
               `}
             >
-              <span className="text-xs sm:text-sm md:text-base font-bold">{rules.baseRank}</span>
-              <span className="text-xs sm:text-sm md:text-base">{symbol}</span>
+              <span className="text-[10px] sm:text-sm md:text-base font-bold">{rules.baseRank}</span>
+              <span className="text-[10px] sm:text-sm md:text-base">{symbol}</span>
             </div>
           )}
         </div>
