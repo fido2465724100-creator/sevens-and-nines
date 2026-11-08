@@ -51,9 +51,9 @@ export const Card: React.FC<CardProps> = ({
       onClick={isValidMove ? onClick : undefined}
       className={`
         ${sizeClasses}
-        relative shrink-0 rounded-lg bg-white shadow-md select-none touch-manipulation
+        relative shrink-0 rounded-lg bg-white shadow-md select-none touch-manipulation overflow-hidden
         border transition-all duration-200 cursor-default
-        flex flex-col justify-between p-1 sm:p-1.5 font-bold
+        flex flex-col justify-between p-0.5 sm:p-1.5 font-bold
         ${isRed ? 'text-red-600 border-red-200' : 'text-slate-900 border-slate-300'}
         ${isValidMove ? 'cursor-pointer ring-2 ring-amber-400 shadow-amber-400/50 -translate-y-2 hover:-translate-y-3 hover:shadow-lg active:scale-95' : ''}
         ${isSelected ? 'ring-2 ring-blue-500 -translate-y-3' : ''}
@@ -80,9 +80,9 @@ export const Card: React.FC<CardProps> = ({
         <span
           className={`opacity-20 select-none ${
             size === 'xs'
-              ? 'text-sm'
+              ? 'text-xs'
               : size === 'sm'
-              ? 'text-base'
+              ? 'text-sm'
               : size === 'md'
               ? 'text-lg sm:text-2xl'
               : 'text-4xl'
@@ -92,15 +92,17 @@ export const Card: React.FC<CardProps> = ({
         </span>
       </div>
 
-      {/* Bottom Right Corner (inverted) */}
-      <div className="flex flex-col items-end leading-tight rotate-180 pointer-events-none z-10">
-        <span className="font-extrabold tracking-tighter text-[10px] sm:text-xs md:text-sm">
-          {card.rank}
-        </span>
-        <span className="text-[8px] sm:text-[10px] md:text-xs">
-          {symbol}
-        </span>
-      </div>
+      {/* Bottom Right Corner (inverted) - only on larger cards to avoid doubling on compact screens */}
+      {size !== 'xs' && size !== 'sm' && (
+        <div className="flex flex-col items-end leading-tight rotate-180 pointer-events-none z-10">
+          <span className="font-extrabold tracking-tighter text-[10px] sm:text-xs md:text-sm">
+            {card.rank}
+          </span>
+          <span className="text-[8px] sm:text-[10px] md:text-xs">
+            {symbol}
+          </span>
+        </div>
+      )}
 
       {/* Valid Move Indicator Badge */}
       {isValidMove && (
