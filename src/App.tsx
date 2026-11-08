@@ -22,10 +22,10 @@ import { LanguageSelectModal } from './components/LanguageSelectModal';
 import { InitialGameModeModal } from './components/InitialGameModeModal';
 
 export const App: React.FC = () => {
-  // Language (100 languages supported - Ukrainian default)
+  // Language (100 languages supported - English default for global release)
   const [language, setLanguage] = useState<Language>(() => {
     const saved = localStorage.getItem('nines_lang');
-    return saved && LANGUAGES_MAP[saved] ? saved : 'uk';
+    return saved && LANGUAGES_MAP[saved] ? saved : 'en';
   });
 
   // 2-Step Onboarding sequence on first launch:
