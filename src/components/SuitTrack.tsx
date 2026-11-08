@@ -63,11 +63,11 @@ export const SuitTrack: React.FC<SuitTrackProps> = ({ suit, sequence, rules, t }
         </div>
 
         {/* Center: Base Card Slot (9 or 7) */}
-        <div className="relative mx-0.5 sm:mx-1.5 shrink-0">
+        <div className="relative mx-0.5 sm:mx-1.5 shrink-0 z-10">
           {sequence.baseCard ? (
-            <div className="relative">
+            <div className="relative pb-2">
               <Card card={sequence.baseCard} size={cardSize} className="ring-2 ring-amber-400/80 shadow-lg" />
-              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 px-1 rounded bg-amber-500 text-[7px] sm:text-[9px] font-black text-slate-900 uppercase tracking-wider shadow">
+              <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 px-1 rounded bg-amber-500 text-[7px] sm:text-[9px] font-black text-slate-900 uppercase tracking-wider shadow z-20 whitespace-nowrap">
                 {t.base}
               </div>
             </div>
@@ -92,6 +92,7 @@ export const SuitTrack: React.FC<SuitTrackProps> = ({ suit, sequence, rules, t }
             </div>
           )}
         </div>
+
 
         {/* Ascending cards (Right side) */}
         <div
