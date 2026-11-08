@@ -170,9 +170,9 @@ export const Table: React.FC<TableProps> = ({
         </div>
 
         {/* Middle Row: Left Bot + Center Suit Tracks + Right Bot */}
-        <div className="flex items-center justify-between w-full flex-1 min-h-0 gap-1 sm:gap-4">
+        <div className="flex items-center justify-between w-full flex-1 min-h-0 gap-1 sm:gap-4 my-auto">
           {/* Left Player (Bot 1) */}
-          <div className="w-12 sm:w-28 shrink-0 flex justify-center self-center">
+          <div className="w-10 sm:w-24 shrink-0 flex justify-center self-center">
             {botLeft && (
               <PlayerSeat
                 player={botLeft}
@@ -188,7 +188,7 @@ export const Table: React.FC<TableProps> = ({
           </div>
 
           {/* Center: The 4 Suit Tracks on the table */}
-          <div className="flex-1 max-w-4xl xl:max-w-5xl flex flex-col items-center gap-0.5 sm:gap-2 w-full min-w-0 self-center">
+          <div className="flex-1 max-w-4xl xl:max-w-5xl flex flex-col items-center justify-center gap-0.5 sm:gap-1.5 w-full min-w-0">
             {SUITS_ORDER.map((suit) => (
               <SuitTrack
                 key={suit}
@@ -201,7 +201,7 @@ export const Table: React.FC<TableProps> = ({
           </div>
 
           {/* Right Player (Bot 3) */}
-          <div className="w-12 sm:w-28 shrink-0 flex justify-center self-center">
+          <div className="w-10 sm:w-24 shrink-0 flex justify-center self-center">
             {botRight && (
               <PlayerSeat
                 player={botRight}
@@ -217,55 +217,53 @@ export const Table: React.FC<TableProps> = ({
           </div>
         </div>
 
-        {/* Bottom Area: Human Player Hand and Game Log */}
-        <div className="w-full flex flex-col items-center relative shrink-0">
-          <div className="w-full flex items-center justify-between gap-1 sm:gap-4">
-            {/* User Avatar Badge */}
-            <div className="w-12 sm:w-28 shrink-0 flex justify-center">
-              {user && (
-                <PlayerSeat
-                  player={user}
-                  isCurrentTurn={isUserTurn}
-                  isWinner={winnerId === user.id}
-                  position="bottom"
-                  cardBackStyle={cardBackStyle}
-                  customCardBackUrl={customCardBackUrl}
-                  t={{ turn: t.turn, pass: t.pass }}
-                />
-              )}
-            </div>
-
-            {/* Hand with cards fanned and suit-separated */}
-            <div className="flex-1 flex justify-center min-w-0">
-              {user && (
-                <Hand
-                  hand={user.hand}
-                  validMoves={validMoves}
-                  isMyTurn={isUserTurn}
-                  onPlayCard={onPlayCard}
-                  onPass={onPass}
-                  canPass={canPass}
-                  autoPass={autoPass}
-                  onToggleAutoPass={onToggleAutoPass}
-                  cardBackStyle={cardBackStyle}
-                  customCardBackUrl={customCardBackUrl}
-                  t={t}
-                />
-              )}
-            </div>
-
-            {/* Game Log on Right */}
-            <div className="w-28 sm:w-44 shrink-0 hidden md:block">
-              <GameLog
-                moves={moveHistory}
-                t={{
-                  history: t.history,
-                  started: t.started,
-                  played: t.played,
-                  passed: t.passed,
-                }}
+        {/* Bottom Area: Human Player Hand, Seat and Game Log */}
+        <div className="w-full flex items-end justify-between gap-1 sm:gap-4 relative shrink-0 pt-0.5 pb-1">
+          {/* User Avatar Badge */}
+          <div className="w-10 sm:w-24 shrink-0 flex justify-center">
+            {user && (
+              <PlayerSeat
+                player={user}
+                isCurrentTurn={isUserTurn}
+                isWinner={winnerId === user.id}
+                position="bottom"
+                cardBackStyle={cardBackStyle}
+                customCardBackUrl={customCardBackUrl}
+                t={{ turn: t.turn, pass: t.pass }}
               />
-            </div>
+            )}
+          </div>
+
+          {/* Hand with cards fanned and suit-separated */}
+          <div className="flex-1 flex justify-center min-w-0">
+            {user && (
+              <Hand
+                hand={user.hand}
+                validMoves={validMoves}
+                isMyTurn={isUserTurn}
+                onPlayCard={onPlayCard}
+                onPass={onPass}
+                canPass={canPass}
+                autoPass={autoPass}
+                onToggleAutoPass={onToggleAutoPass}
+                cardBackStyle={cardBackStyle}
+                customCardBackUrl={customCardBackUrl}
+                t={t}
+              />
+            )}
+          </div>
+
+          {/* Game Log on Right */}
+          <div className="w-20 sm:w-44 shrink-0 hidden md:block">
+            <GameLog
+              moves={moveHistory}
+              t={{
+                history: t.history,
+                started: t.started,
+                played: t.played,
+                passed: t.passed,
+              }}
+            />
           </div>
         </div>
       </main>

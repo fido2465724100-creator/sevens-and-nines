@@ -66,11 +66,11 @@ export const Card: React.FC<CardProps> = ({
       }}
     >
       {/* Top Left Corner */}
-      <div className="flex flex-col items-start leading-none pointer-events-none">
-        <span className="font-extrabold tracking-tighter text-xs sm:text-sm md:text-base">
+      <div className="flex flex-col items-start leading-tight pointer-events-none z-10">
+        <span className="font-extrabold tracking-tighter text-[10px] sm:text-xs md:text-sm">
           {card.rank}
         </span>
-        <span className="text-[9px] sm:text-[11px] md:text-xs">
+        <span className="text-[8px] sm:text-[10px] md:text-xs">
           {symbol}
         </span>
       </div>
@@ -78,14 +78,14 @@ export const Card: React.FC<CardProps> = ({
       {/* Center Suit Symbol / Art */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <span
-          className={`opacity-85 select-none ${
+          className={`opacity-20 select-none ${
             size === 'xs'
-              ? 'text-lg sm:text-xl md:text-2xl lg:text-3xl'
+              ? 'text-sm'
               : size === 'sm'
-              ? 'text-xl sm:text-2xl md:text-3xl'
+              ? 'text-base'
               : size === 'md'
-              ? 'text-3xl'
-              : 'text-5xl'
+              ? 'text-lg sm:text-2xl'
+              : 'text-4xl'
           }`}
         >
           {symbol}
@@ -93,11 +93,11 @@ export const Card: React.FC<CardProps> = ({
       </div>
 
       {/* Bottom Right Corner (inverted) */}
-      <div className="flex flex-col items-end leading-none rotate-180 pointer-events-none">
-        <span className="font-extrabold tracking-tighter text-xs sm:text-sm md:text-base">
+      <div className="flex flex-col items-end leading-tight rotate-180 pointer-events-none z-10">
+        <span className="font-extrabold tracking-tighter text-[10px] sm:text-xs md:text-sm">
           {card.rank}
         </span>
-        <span className="text-[9px] sm:text-[11px] md:text-xs">
+        <span className="text-[8px] sm:text-[10px] md:text-xs">
           {symbol}
         </span>
       </div>

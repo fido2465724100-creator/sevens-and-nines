@@ -116,20 +116,20 @@ export const Hand: React.FC<HandProps> = ({
       </div>
 
       {/* Cards Fan with Half-Card Gap Between Suits */}
-      <div className="flex items-center justify-center flex-nowrap gap-2 sm:gap-4 md:gap-6 py-0.5 sm:py-2 px-1 sm:px-2 w-full overflow-x-auto min-h-[60px] sm:min-h-[110px] hand-fan-compact">
+      <div className="flex items-center justify-center flex-nowrap gap-1.5 sm:gap-3 md:gap-5 py-0.5 sm:py-1 px-1 w-full overflow-x-auto min-h-[55px] sm:min-h-[85px] hand-fan-compact">
         {groupedHand.map((group) => (
           <div
             key={group.suit}
-            className="flex items-center -space-x-3 sm:-space-x-4 md:-space-x-5 hover:-space-x-1 transition-all duration-200"
+            className="flex items-center -space-x-2 sm:-space-x-3 md:-space-x-4 hover:space-x-0.5 transition-all duration-200"
           >
             {group.cards.map((card, cardIndex) => {
               const isValid = isMyTurn && validCardIds.has(card.id);
-              const rotationAngle = (cardIndex - (group.cards.length - 1) / 2) * 1.5;
+              const rotationAngle = (cardIndex - (group.cards.length - 1) / 2) * 1;
 
               return (
                 <div
                   key={card.id}
-                  className="transition-transform duration-200 origin-bottom hover:z-30"
+                  className="transition-transform duration-200 origin-bottom hover:z-30 hover:-translate-y-2"
                   style={{
                     transform: `rotate(${rotationAngle}deg)`,
                   }}

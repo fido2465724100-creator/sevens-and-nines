@@ -39,15 +39,15 @@ export const SuitTrack: React.FC<SuitTrackProps> = ({ suit, sequence, rules, t }
   const maxHighCount = baseIndex >= 0 ? rules.ranks.length - 1 - baseIndex : (is52Deck ? 7 : 5);
 
   return (
-    <div className="mobile-track-compact flex items-center gap-1.5 sm:gap-3 py-1 sm:py-2 px-2 sm:px-3.5 rounded-xl sm:rounded-2xl bg-black/35 backdrop-blur-xs border border-white/10 shadow-inner w-full min-w-0">
+    <div className="mobile-track-compact flex items-center gap-1 sm:gap-2 py-0.5 sm:py-1 px-1.5 sm:px-3 rounded-lg sm:rounded-xl bg-black/35 backdrop-blur-xs border border-white/10 shadow-inner w-full min-w-0">
       {/* Suit Header Badge */}
       <div
-        className={`mobile-track-suit flex flex-col items-center justify-center w-8 sm:w-12 md:w-14 shrink-0 select-none font-bold ${
+        className={`mobile-track-suit flex flex-col items-center justify-center w-7 sm:w-10 shrink-0 select-none font-bold ${
           isRed ? 'text-red-400' : 'text-slate-200'
         }`}
       >
-        <span className="text-lg sm:text-2xl md:text-3xl leading-none drop-shadow">{symbol}</span>
-        <span className="text-[8px] sm:text-[10px] md:text-xs uppercase tracking-wider text-white/70">{suitName}</span>
+        <span className="text-sm sm:text-xl md:text-2xl leading-none drop-shadow">{symbol}</span>
+        <span className="text-[7px] sm:text-[9px] uppercase tracking-wider text-white/70">{suitName}</span>
       </div>
 
       {/* Cards Row Container: Left low cards, Center Base slot, Right high cards */}
