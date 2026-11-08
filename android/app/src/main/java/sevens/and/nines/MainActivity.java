@@ -1,4 +1,4 @@
-package io.snapcraft.sevensandnines;
+package sevens.and.nines;
 
 import com.getcapacitor.BridgeActivity;
 

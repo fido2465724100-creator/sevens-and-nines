@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.snapcraft.sevensandnines',
+  appId: 'sevens.and.nines',
   appName: 'Sevens and Nines',
   webDir: 'dist'
 };
