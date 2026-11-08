@@ -30,8 +30,8 @@ body {
   padding-right: max(8px, env(safe-area-inset-right));
 }
 
-/* Mobile Landscape (< 520px height) high-density optimizations */
-@media (max-height: 520px) {
+/* Mobile Landscape (< 620px height) high-density optimizations */
+@media (max-height: 620px) {
   .mobile-table-compact {
     height: 100dvh !important;
     max-height: 100dvh !important;
@@ -39,7 +39,8 @@ body {
   }
 
   .mobile-main-compact {
-    padding: 0.15rem 0.5rem !important;
+    padding: 0.1rem 0.5rem 0.25rem 0.5rem !important;
+    gap: 0.25rem !important;
   }
 
   .mobile-header-compact {
@@ -50,13 +51,13 @@ body {
   }
 
   .mobile-avatar-compact {
-    width: 1.75rem !important;
-    height: 1.75rem !important;
+    width: 2rem !important;
+    height: 2rem !important;
   }
 
   .mobile-avatar-icon {
-    width: 0.95rem !important;
-    height: 0.95rem !important;
+    width: 1rem !important;
+    height: 1rem !important;
   }
 
   .mobile-hide-card-fan {
@@ -78,43 +79,43 @@ body {
 
   .mobile-track-suit {
     width: 1.5rem !important;
-    font-size: 0.95rem !important;
+    font-size: 0.85rem !important;
   }
 
-  /* Responsive card sizing on short mobile screens */
+  /* Responsive card sizing on mobile landscape */
   .card-size-xs {
-    width: 18px !important;
-    height: 26px !important;
-    font-size: 7.5px !important;
-    padding: 1px !important;
-    border-radius: 2px !important;
-  }
-
-  .card-size-sm {
     width: 22px !important;
-    height: 31px !important;
+    height: 30px !important;
     font-size: 8px !important;
     padding: 1px !important;
     border-radius: 2px !important;
   }
 
-  .card-size-md {
-    width: 32px !important;
-    height: 46px !important;
+  .card-size-sm {
+    width: 24px !important;
+    height: 34px !important;
     font-size: 9px !important;
     padding: 1px !important;
-    border-radius: 3px !important;
+    border-radius: 2px !important;
+  }
+
+  .card-size-md {
+    width: 44px !important;
+    height: 64px !important;
+    font-size: 13px !important;
+    padding: 2.5px !important;
+    border-radius: 5px !important;
   }
 
   .hand-fan-compact {
-    gap: 0.25rem !important;
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
-    min-height: 46px !important;
+    gap: 0.5rem !important;
+    padding-top: 2px !important;
+    padding-bottom: 6px !important;
+    min-height: 70px !important;
   }
 
-  .hand-group-compact {
-    margin-left: -1.25rem !important;
+  .hand-cards-overlap {
+    margin-left: -0.75rem !important;
   }
 }
 

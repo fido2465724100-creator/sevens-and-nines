@@ -152,7 +152,7 @@ export const Table: React.FC<TableProps> = ({
       </header>
 
       {/* Main Game Arena */}
-      <main className="relative z-10 flex-1 min-h-0 flex flex-col justify-between gap-1 items-center p-0.5 sm:p-3 max-w-7xl mx-auto w-full overflow-y-auto mobile-main-compact">
+      <main className="relative z-10 flex-1 min-h-0 flex flex-col justify-between items-center p-0.5 sm:p-2 max-w-7xl mx-auto w-full overflow-hidden mobile-main-compact">
         {/* Top Player (Bot 2) */}
         <div className="flex justify-center w-full shrink-0">
           {botTop && (
