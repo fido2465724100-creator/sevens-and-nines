@@ -14,6 +14,8 @@ import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
 import com.android.billingclient.api.QueryPurchasesParams;
 import com.android.billingclient.api.AcknowledgePurchaseParams;
+import com.android.billingclient.api.PendingPurchasesParams;
+import com.android.billingclient.api.QueryProductDetailsResult;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -34,9 +36,14 @@ public class BillingPlugin extends Plugin implements PurchasesUpdatedListener {
 
     @Override
     public void load() {
+        PendingPurchasesParams pendingPurchasesParams = PendingPurchasesParams.newBuilder()
+                .enableOneTimeProducts()
+                .enablePrepaidPlans()
+                .build();
+
         billingClient = BillingClient.newBuilder(getContext())
                 .setListener(this)
-                .enablePendingPurchases()
+                .enablePendingPurchases(pendingPurchasesParams)
                 .build();
 
         connectToGooglePlay();
@@ -74,7 +81,8 @@ public class BillingPlugin extends Plugin implements PurchasesUpdatedListener {
                 .setProductList(productList)
                 .build();
 
-        billingClient.queryProductDetailsAsync(params, (billingResult, productDetailsList) -> {
+        billingClient.queryProductDetailsAsync(params, (billingResult, queryProductDetailsResult) -> {
+            List<ProductDetails> productDetailsList = queryProductDetailsResult != null ? queryProductDetailsResult.getProductDetailsList() : null;
             if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK
                     && productDetailsList != null && !productDetailsList.isEmpty()) {
                 subscriptionProductDetails = productDetailsList.get(0);

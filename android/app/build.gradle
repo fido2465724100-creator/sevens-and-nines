@@ -51,7 +51,7 @@ dependencies {
     implementation project(':capacitor-android')
     testImplementation "junit:junit:$junitVersion"
     implementation project(':capacitor-cordova-android-plugins')
-    implementation 'com.android.billingclient:billing:7.1.1'
+    implementation 'com.android.billingclient:billing:8.0.0'
 
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22") {
