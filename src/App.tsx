@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import {
   AiDifficulty,
   Card as CardType,
@@ -20,6 +20,9 @@ import { RulesModal } from './components/RulesModal';
 import { WinModal } from './components/WinModal';
 import { LanguageSelectModal } from './components/LanguageSelectModal';
 import { InitialGameModeModal } from './components/InitialGameModeModal';
+import { TrialWall } from './components/TrialWall';
+import { recordInstallDate, shouldShowPaywall, onPurchaseCompleted } from './billing/billing';
+import { initOrientationLock, isLandscapeLocked, setLandscapeLocked } from './utils/orientation';
 
 export const App: React.FC = () => {
   // Language (100 languages supported - English default for global release)
@@ -36,6 +39,21 @@ export const App: React.FC = () => {
   });
 
   const [isManualLanguageModalOpen, setIsManualLanguageModalOpen] = useState<boolean>(false);
+
+  // Trial / Paywall state
+  const [showPaywall, setShowPaywall] = useState<boolean>(false);
+
+  // Record install date on first launch & check trial status
+  useEffect(() => {
+    recordInstallDate();
+    shouldShowPaywall().then((show) => {
+      setShowPaywall(show);
+    });
+    const unsubscribe = onPurchaseCompleted(() => {
+      setShowPaywall(false);
+    });
+    return unsubscribe;
+  }, []);
 
   const t: TranslationDict = useMemo(() => {
     return getTranslationsForLanguage(language);
@@ -75,6 +93,20 @@ export const App: React.FC = () => {
     const v = localStorage.getItem('nines_volume');
     return v !== null ? parseFloat(v) : 0.5;
   });
+
+  // Screen orientation lock state (defaults to true: landscape locked)
+  const [lockLandscape, setLockLandscapeState] = useState<boolean>(() => {
+    return isLandscapeLocked();
+  });
+
+  useEffect(() => {
+    initOrientationLock();
+  }, []);
+
+  const handleToggleLockLandscape = async (locked: boolean) => {
+    setLockLandscapeState(locked);
+    await setLandscapeLocked(locked);
+  };
 
   // Modals
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
@@ -320,6 +352,8 @@ export const App: React.FC = () => {
         onSelectLanguage={handleSelectLanguage}
         onOpenLanguageModal={() => setIsManualLanguageModalOpen(true)}
         onRestartGame={() => handleRestart()}
+        lockLandscape={lockLandscape}
+        onToggleLockLandscape={handleToggleLockLandscape}
         t={t}
       />
 
@@ -352,6 +386,12 @@ export const App: React.FC = () => {
         onSelectGameMode={handleSelectInitialGameMode}
         onBack={() => setOnboardingStep('language')}
         t={t}
+      />
+
+      <TrialWall
+        isOpen={showPaywall}
+        onUnlocked={() => setShowPaywall(false)}
+        language={language}
       />
     </div>
   );

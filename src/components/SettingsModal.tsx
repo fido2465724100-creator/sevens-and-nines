@@ -6,7 +6,8 @@ import { Language, TranslationDict } from '../i18n/translations';
 import { LANGUAGES_MAP } from '../i18n/languages100';
 import { CardBack } from './CardBack';
 import { soundEngine } from '../audio/soundEngine';
-import { Check, Globe, ImagePlus, RotateCcw, Trash2, Volume2, VolumeX, X } from 'lucide-react';
+import { Check, Globe, ImagePlus, Lock, RotateCcw, Smartphone, Trash2, Volume2, VolumeX, X } from 'lucide-react';
+import { FlagIcon } from './FlagIcon';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -29,6 +30,8 @@ interface SettingsModalProps {
   onSelectLanguage: (lang: Language) => void;
   onOpenLanguageModal: () => void;
   onRestartGame: () => void;
+  lockLandscape: boolean;
+  onToggleLockLandscape: (locked: boolean) => void;
   t: TranslationDict;
 }
 
@@ -53,6 +56,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onSelectLanguage,
   onOpenLanguageModal,
   onRestartGame,
+  lockLandscape,
+  onToggleLockLandscape,
   t,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -153,7 +158,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
             <div className="p-3.5 rounded-2xl border border-slate-800 bg-slate-800/40 flex items-center justify-between flex-wrap gap-3">
               <div className="flex items-center gap-3.5">
-                <span className="text-3xl drop-shadow select-none">{currentLangData.flag}</span>
+                <FlagIcon code={currentLangData.code} flag={currentLangData.flag} size="lg" className="text-3xl" />
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="font-bold text-white text-base">
@@ -426,6 +431,40 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   {Math.round(soundVolume * 100)}%
                 </span>
               </div>
+            </div>
+          </div>
+
+          {/* Section 5: Screen Orientation */}
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">
+              {t.lockLandscapeTitle}
+            </h3>
+            <div className="flex items-center gap-2 p-1.5 rounded-xl bg-slate-800/60 border border-slate-700">
+              <button
+                type="button"
+                onClick={() => onToggleLockLandscape(true)}
+                className={`flex-1 py-2 px-3 rounded-lg border text-xs font-bold flex items-center justify-center gap-1.5 transition cursor-pointer ${
+                  lockLandscape
+                    ? 'border-amber-400 bg-amber-500/20 text-amber-300'
+                    : 'border-slate-700 bg-slate-850/60 text-slate-400 hover:border-slate-500'
+                }`}
+              >
+                <Lock className="w-3.5 h-3.5 text-amber-400" />
+                <span>{t.lockLandscapeOn}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => onToggleLockLandscape(false)}
+                className={`flex-1 py-2 px-3 rounded-lg border text-xs font-bold flex items-center justify-center gap-1.5 transition cursor-pointer ${
+                  !lockLandscape
+                    ? 'border-amber-400 bg-amber-500/20 text-amber-300'
+                    : 'border-slate-700 bg-slate-850/60 text-slate-400 hover:border-slate-500'
+                }`}
+              >
+                <Smartphone className="w-3.5 h-3.5 text-slate-300" />
+                <span>{t.lockLandscapeOff}</span>
+              </button>
             </div>
           </div>
         </div>

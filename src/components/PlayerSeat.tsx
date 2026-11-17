@@ -1,7 +1,8 @@
 import React from 'react';
 import { CardBackStyle, Player } from '../engine/types';
 import { CardBack } from './CardBack';
-import { Bot, Coins, Layers, User } from 'lucide-react';
+import { Coins, Layers, User } from 'lucide-react';
+import tdroidBotImg from '../assets/tdroid-bot.png';
 
 interface PlayerSeatProps {
   player: Player;
@@ -47,7 +48,11 @@ export const PlayerSeat: React.FC<PlayerSeatProps> = ({
           `}
         >
           {player.isBot ? (
-            <Bot className={`w-7 h-7 mobile-avatar-icon ${isCurrentTurn ? 'text-amber-300' : 'text-slate-300'}`} />
+            <img
+              src={tdroidBotImg}
+              alt={player.name}
+              className="w-full h-full object-cover rounded-full"
+            />
           ) : (
             <User className={`w-7 h-7 mobile-avatar-icon ${isCurrentTurn ? 'text-amber-300' : 'text-slate-300'}`} />
           )}

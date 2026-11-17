@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { LANGUAGES_100, LanguageData } from '../i18n/languages100';
 import { TranslationDict } from '../i18n/translations';
 import { Check, Globe, X } from 'lucide-react';
+import { FlagIcon } from './FlagIcon';
 
 interface LanguageSelectModalProps {
   isOpen: boolean;
@@ -113,7 +114,7 @@ export const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
         </div>
 
         {/* 100 Languages Grid (Gamepad & Keyboard Accessible) */}
-        <div className="flex-1 p-4 sm:p-6 overflow-y-auto">
+        <div className="flex-1 min-h-0 p-4 sm:p-6 overflow-y-auto overscroll-contain">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
             {LANGUAGES_100.map((lang, index) => {
               const isSelected = currentLanguageCode === lang.code;
@@ -141,7 +142,7 @@ export const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
                 >
                   {/* Top: Flag & Checkmark */}
                   <div className="flex items-center justify-between w-full mb-1">
-                    <span className="text-3xl drop-shadow select-none">{lang.flag}</span>
+                    <FlagIcon code={lang.code} flag={lang.flag} size="lg" className="text-3xl" />
                     <div className="flex items-center gap-1.5">
                       <span className="text-[10px] font-mono text-slate-400 uppercase bg-black/40 px-1.5 py-0.5 rounded">
                         #{index + 1}

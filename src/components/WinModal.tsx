@@ -23,19 +23,22 @@ export const WinModal: React.FC<WinModalProps> = ({
   t,
 }) => {
   useEffect(() => {
-    if (isOpen) {
-      soundEngine.playWin();
-      try {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 },
-        });
-      } catch {
-        // Fallback
+    if (isOpen && winner) {
+      const isUserWinner = !winner.isBot;
+      if (isUserWinner) {
+        soundEngine.playWin();
+        try {
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+          });
+        } catch {
+          // Fallback
+        }
       }
     }
-  }, [isOpen]);
+  }, [isOpen, winner]);
 
   if (!isOpen || !winner) return null;
 

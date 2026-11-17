@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 32" width="48" height="32">
+  <rect width="48" height="32" fill="#CD0000"/>
+  <g fill="#FFD700" stroke="#FFD700" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Star -->
+    <path d="M7 3.2 L7.8 5.6 L10.3 5.6 L8.3 7.1 L9.1 9.4 L7 7.9 L4.9 9.4 L5.7 7.1 L3.7 5.6 L6.2 5.6 Z" stroke-width="0.3"/>
+    <!-- Hammer -->
+    <path d="M5.5 12.8 L10.8 7.5 L11.8 8.5 L6.5 13.8 Z" stroke-width="0.4"/>
+    <path d="M9.8 6.5 L12.5 9.2 L13.2 8.5 L12.4 6.2 L10.8 5.5 Z" stroke-width="0.4"/>
+    <!-- Sickle -->
+    <path d="M5.2 14.5 C4.0 12.5 4.8 9.0 8.0 7.4 C10.8 6.0 13.5 7.5 13.8 8.0 C13.5 8.2 11.2 7.8 9.0 9.2 C6.8 10.6 6.4 12.8 7.2 14.2 Z" stroke-width="0.3"/>
+    <!-- Sickle handle -->
+    <path d="M4.5 15.2 L5.6 13.9 L6.4 14.5 L5.3 15.8 Z" fill="#D29944" stroke="#D29944"/>
+  </g>
+</svg>

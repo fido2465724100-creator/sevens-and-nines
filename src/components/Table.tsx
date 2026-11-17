@@ -8,6 +8,7 @@ import { PlayerSeat } from './PlayerSeat';
 import { Hand } from './Hand';
 import { GameLog } from './GameLog';
 import { BookOpen, Coins, Globe, RotateCcw, Settings, Smartphone } from 'lucide-react';
+import { FlagIcon } from './FlagIcon';
 
 interface TableProps {
   gameState: GameState;
@@ -116,7 +117,7 @@ export const Table: React.FC<TableProps> = ({
             title={`${t.language} (100)`}
           >
             <Globe className="w-3.5 h-3.5 text-amber-300 group-hover:rotate-45 transition-transform" />
-            <span className="text-sm leading-none">{currentLang.flag}</span>
+            <FlagIcon code={currentLang.code} flag={currentLang.flag} size="sm" className="text-sm leading-none" />
             <span className="hidden sm:inline text-xs font-medium">{currentLang.nativeName}</span>
             <span className="text-[10px] font-mono text-amber-300/80 bg-amber-400/10 px-1.5 py-0.5 rounded border border-amber-400/20">
               100

@@ -75,6 +75,9 @@ export interface TranslationDict {
   soundOn: string;
   soundOff: string;
   volume: string;
+  lockLandscapeTitle?: string;
+  lockLandscapeOn?: string;
+  lockLandscapeOff?: string;
   language: string;
   newGame: string;
   done: string;
@@ -174,6 +177,9 @@ export const TRANSLATIONS: Record<Language, TranslationDict> = {
     soundOn: 'Звук включен',
     soundOff: 'Без звука',
     volume: 'Громкость',
+    lockLandscapeTitle: 'Ориентация экрана',
+    lockLandscapeOn: 'Альбомная (заблокировано)',
+    lockLandscapeOff: 'Автоповорот',
     language: 'Язык интерфейса',
     newGame: 'Начать заново',
     done: 'Готово',
@@ -266,6 +272,9 @@ export const TRANSLATIONS: Record<Language, TranslationDict> = {
     soundOn: 'Звук увімкнено',
     soundOff: 'Без звуку',
     volume: 'Гучність',
+    lockLandscapeTitle: 'Орієнтація екрана',
+    lockLandscapeOn: 'Альбомна (заблоковано)',
+    lockLandscapeOff: 'Автоповорот',
     language: 'Мова інтерфейсу',
     newGame: 'Почати заново',
     done: 'Готово',
@@ -358,6 +367,9 @@ export const TRANSLATIONS: Record<Language, TranslationDict> = {
     soundOn: 'Sound Enabled',
     soundOff: 'Muted',
     volume: 'Volume',
+    lockLandscapeTitle: 'Screen Orientation',
+    lockLandscapeOn: 'Landscape (Locked)',
+    lockLandscapeOff: 'Auto-Rotate',
     language: 'Language',
     newGame: 'Restart Round',
     done: 'Done',
@@ -1530,6 +1542,9 @@ export function getTranslationsForLanguage(code: string): TranslationDict {
     tableColor: l100.tableColor || fallback.tableColor,
     botDifficulty: l100.botDifficulty || fallback.botDifficulty,
     sounds: l100.sounds || fallback.sounds,
+    lockLandscapeTitle: fallback.lockLandscapeTitle || 'Screen Orientation',
+    lockLandscapeOn: fallback.lockLandscapeOn || 'Landscape (Locked)',
+    lockLandscapeOff: fallback.lockLandscapeOff || 'Auto-Rotate',
     newGame: l100.restart,
     language: l100.name,
     chooseGameTitle: fallback.chooseGameTitle || l100.rulesGuide || 'Choose Game',
